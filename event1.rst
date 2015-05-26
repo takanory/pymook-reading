@@ -276,9 +276,7 @@ Python 2系ではUnicode文字列を扱うためのunicode型があります。P
    日本
 
 なお、Python 2系のインタープリタではunicode型の文字をそのまま表示しないため、print文を使用して確認しています。
-Python 3系のインタープリタでは XXXX によって日本語がそのまま表示されるようになっています。
-
-.. todo:: いしもとさんのPEP
+Python 3系のインタープリタでは `PEP 3138 -- String representation in Python 3000 <https://www.python.org/dev/peps/pep-3138/>`_ によって日本語がそのまま表示されるようになっています。
 
 .. code-block:: python
    :caption: Python 3系でunicode型のエンコード/デコード
@@ -288,11 +286,15 @@ Python 3系のインタープリタでは XXXX によって日本語がそのま
    >>> b'\xe6\x97\xa5\xe6\x9c\xac'.decode('utf-8')
    '日本'
 
-ここで「型推論はないのか?」という質問がありました。Python 2系にはannotationはありませんが、Python 3.5で入る予定であるという解説がありました。
-Python 3.5 では XXXX によって、以下の様な指定ができるようになるようです。
+ここで「型推論はないのか?」という質問がありました。Python 2系にはannotationはありませんが、 `Python 3.5 <https://docs.python.org/dev/whatsnew/3.5.html>`_ で入る予定であるという解説がありました。
+Python 3.5 では `PEP 0484 -- Type Hints <https://www.python.org/dev/peps/pep-0484/>`_ によって、以下の様に引数と戻り値の型が指定ができるようになるようです。
 
-.. todo:: annotationのPEP
+.. code-block:: python
+   :caption: fizzbuzz関数にType Hintsを指定した例
 
+   # 引数はint型、戻り値はstr型
+   def fizzbuzz(num: int): -> str:
+                
 2-3 Pythonのデータ型［コレクション編］
 --------------------------------------
 
