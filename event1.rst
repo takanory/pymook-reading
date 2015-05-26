@@ -217,23 +217,87 @@ Pythonには
 
 2-2 Pythonのデータ型［基本編］
 ------------------------------
+この節ではPythonの基本となる、以下のデータ型について説明しました。
+
+- 整数型(int)
+- 浮動小数点型(float)
+- 文字列型(str)
+- Unicode 文字列型(unicode)
+
+.. code-block:: python
+   :caption: 整数型と浮動小数点型
+
+   >>> 2 + 2 # 整数型の計算
+   4
+   >>> 3 - 8
+   -5
+   >>> 6 * 9
+   54
+   >>> 7 / 3 # 整数型同士の商は整数型となる
+   2
+   >>> 5.0 + 5.2 # 浮動小数点型の計算
+   10.2
+   >>> 10.2 - 8  # 浮動小数点型と整数型の計算結果は浮動小数点型になる
+   18.2
+
+シングルクォート(``'``)またはダブルクォートで(``"``)で囲むと文字列になります。
+また文字列の一部をインデックス指定やスライス指定で取り出せます。
+
+.. code-block:: python
+   :caption: str型
+
+   >>> 'Hello,world'
+   'Hello,world'
+   >>> "Hello,world"
+   'Hello,world'
+   >>> 'python'[1]   # 文字列のインデックス指定
+   'y'
+   >>> 'python'[2:5] # 文字列のスライス指定(2文字目から5文字目の前まで)
+   'yth'
+   >>> 'python'[:3]  # 最初から3文字目の前まで
+   'pyt'
+   >>> 'python'[4:]  # 4文字目から最後まで
+   'on'
+
+Python 2系ではUnicode文字列を扱うためのunicode型があります。Python 3系ではstr型(中身はUnicode文字列)に統一されました。unicode型の文字列は ``u'文字列'`` と宣言します。また、str型とunicode型の変換はencode/decodeで行います。
+
+.. code-block:: python
+   :caption: unicode型
+
+   >>> u'日本'
+   u'\u65e5\u672c'
+   >>> print u"日本" # printに渡すと文字列が表示される
+   日本
+   >>> u"日本".encode('utf-8') # str型にエンコード
+   '\xe6\x97\xa5\xe6\x9c\xac'
+   >>> '\xe6\x97\xa5\xe6\x9c\xac'.decode('utf-8') # unicode型にデコード
+   u'\u65e5\u672c'
+   >>> print '\xe6\x97\xa5\xe6\x9c\xac'.decode('utf-8')
+   日本
+
+なお、Python 2系のインタープリタではunicode型の文字をそのまま表示しないため、print文を使用して確認しています。
+Python 3系のインタープリタでは XXXX によって日本語がそのまま表示されるようになっています。
+
+.. todo:: いしもとさんのPEP
+
+.. code-block:: python
+   :caption: Python 3系でunicode型のエンコード/デコード
+
+   >>> u"日本".encode('utf-8')
+   b'\xe6\x97\xa5\xe6\x9c\xac'
+   >>> b'\xe6\x97\xa5\xe6\x9c\xac'.decode('utf-8')
+   '日本'
+
+ここで「型推論はないのか?」という質問がありました。Python 2系にはannotationはありませんが、Python 3.5で入る予定であるという解説がありました。
+Python 3.5 では XXXX によって、以下の様な指定ができるようになるようです。
+
+.. todo:: annotationのPEP
 
 2-3 Pythonのデータ型［コレクション編］
 --------------------------------------
 
 2-4 ファイル操作とモジュール
 ----------------------------
-
-- 文字列とか型についてざっと説明
-- スライス
-- encode, decodeでなぜこうなるの?→書籍の都合で「日」の部分だけをdecodeしている
-  - unicode文字をそのまま表示してくれないので print 文を使っている
-  - python 3だと日本語が表示される
-  - PEPがあって、いしもとさんが書いた(あとでリンクしよう)
-- 型推論とかは?
-  - annotationはPython 2にはない
-  - Python 3.5だとできるようになる?
-  - docstringに
 
 - collection
   - リスト内包表記だときれいにかけるよ
