@@ -286,7 +286,7 @@ Python 3系のインタープリタでは `PEP 3138 -- String representation in 
    >>> b'\xe6\x97\xa5\xe6\x9c\xac'.decode('utf-8')
    '日本'
 
-ここで「型推論はないのか?」という質問がありました。Python 2系にはannotationはありませんが、 `Python 3.5 <https://docs.python.org/dev/whatsnew/3.5.html>`_ で入る予定であるという解説がありました。
+ここで「型推論はないのか?」という質問がありました。Python に型推論はないが、 `Python 3.5 <https://docs.python.org/dev/whatsnew/3.5.html>`_ で型のヒントが付けれるようになるという解説がありました。
 Python 3.5 では `PEP 0484 -- Type Hints <https://www.python.org/dev/peps/pep-0484/>`_ によって、以下の様に引数と戻り値の型が指定ができるようになるようです。
 
 .. code-block:: python
