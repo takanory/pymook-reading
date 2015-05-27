@@ -83,9 +83,9 @@
 1行目は「きたないよりきれいな方がいい」といった意味になります。
 
 .. code-block:: python
-   :caption: import thisで
+   :caption: import thisでThe Zen of Pythonを表示
 
-   >>> import thisでThe Zen of Pythonを表示
+   >>> import this
    The Zen of Python,  Tim Peters
 
    Beautiful is better than ugly.
@@ -205,7 +205,7 @@ Pythonには
    >>> range(10)        # 終了値に10を指定
    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
    >>> range(1, 10)     # 開始値に1、終了値に10を指定
-   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+   [1, 2, 3, 4, 5, 6, 7, 8, 9]
    >>> range(1, 11, 2)  # 開始、終了値、ステップを指定
    [1, 3, 5, 7, 9]
 
@@ -264,7 +264,7 @@ Pythonには
 インデックスやスライスで指定する数値は以下の図のようになっており、負の数も使えます。
 
 .. figure:: /_static/str-index.png
-   :caption: インデックス
+   :alt: インデックス
 
    インデックス
 
