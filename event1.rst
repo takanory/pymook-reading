@@ -293,7 +293,7 @@ Python 3.5 では `PEP 0484 -- Type Hints <https://www.python.org/dev/peps/pep-0
    :caption: fizzbuzz関数にType Hintsを指定した例
 
    # 引数はint型、戻り値はstr型
-   def fizzbuzz(num: int): -> str:
+   def fizzbuzz(num: int) -> str:
                 
 2-3 Pythonのデータ型［コレクション編］
 --------------------------------------
