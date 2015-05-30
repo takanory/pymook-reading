@@ -4,6 +4,8 @@
 
 鈴木たかのり（すずきたかのり）
 ==============================
+.. image:: /_static/kurokuri.jpg
+	   
 部内のサイトを作るためにZope/Ploneと出会い、その後必要にかられてPythonを使い始める。
 
 現在の主な活動は `PyCon JP 2015 <https://pycon.jp/2015/>`_ 座長， `一般社団法人PyCon JP <http://www.pycon.jp/>`_ 理事， `Python ボルダリング部（#kabepy） <http://kabepy.connpass.com/>`_ 部長， `Python mini Hack-a-thon（#pyhack） <http://pyhack.connpass.com/>`_ 主催， `Plone User's Group Japan <http://plone.jp/>`_ など。
