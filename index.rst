@@ -14,6 +14,7 @@
 
    event1	      
    event2
+   author
 
 関連リンク
 ----------
