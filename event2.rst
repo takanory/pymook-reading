@@ -142,63 +142,115 @@ Pythonでは `PyPI: Python Package Index <https://pypi.python.org/pypi>`_ とい
 
 第3章 開発環境とチーム開発
 ==========================
+第3章の著者の嶋田 健志(`@TakesxiSximada <https://twitter.com/TakesxiSximada>`_)にバトンタッチして、後半の読書会をはじめました。
 
 3-1 開発環境とチーム開発に求められること
 ----------------------------------------
+この節ではこのあとに解説するそれぞれの項目について概要的に触れています。
+チーム開発として必要な以下の要素について簡単に解説がありました。
+
+- バージョン管理システム: チームで開発を行うためには、それぞれの担当箇所の開発を平行して行うために、バージョン管理システムが必要です。
+- 隔離された実行環境: さまざまなプロジェクトの開発を行う場合に、プロジェクトごとに使用するライブラリのバージョンが異なる場合があります。環境を混在させないために隔離された実行環境が必要です。
+- ソフトウェア品質の担保: 作成したソフトウェアはきちんとが仕様どおりに動作するか確認するためにテストが必要です。
+- ドキュメント: 仕様書や手順書などをチーム内で共有するために、あまり手間を掛けずにドキュメントを作成する必要があります。
+- 統合開発環境: これからPythonで開発を行うのであれば統合開発環境を使用して、テストやデバッグを効率的に行う必要があります。
 
 3-2 GitとGitHub
 ---------------
-- git, github 使っていない人そこそこいる
-- ブランチはどの単位できってる?
+この節ではバージョン管理リステムとしてGitの紹介と、ホスティングサービスの
+`GitHub <https://github.com/>`_ について解説しました。
 
-  - 機能単位。redmine, github issueの単位で作る
-  - fix shimada チケット番号
-  - ブランチは人に紐付いている
-  - owner変わったらブランチ名変わる→切り直す
+最初にGit、GitHubを使っているかどうか参加者に聞いていましたが、使ったことがない人がそこそ人数がいたので、少し丁寧に解説をしました。
 
-- 普段はcli, sourcetreeは手になじまない
-- コンフリクトしたときcliだと大変じゃないですか
+バージョン管理については馴染みの話題ということもあり、たくさんの質問が出ました。
 
-  - ガッツで乗り切っている
+- Q: ブランチはどの単位で作成しているか?
+- A: 機能単位で作成している。redmine, github issueの単位で。
+  今のプロジェクトでは「fix_shimada_チケット番号」というようなブランチ名にしていて、ブランチは人に紐付いている。担当者が変わった場合はブランチを作成し直す。
+- Q: 普段はコマンドラインとGUIツールのどちらを使っているのか?
+- A: コマンドラインを使っている。GUIツールの sourcetree は手になじまなかった。(筆者はGitを使いこなせていないのでSrouceTreeを使っています)
+- Q: コンフリクトをしたときにはコマンドラインだと大変じゃないか?
+- A: ガッツで乗り切っている(笑)
+- Q: Gitをデザイナーさんにどうやって使ってもらうか。今はメールとかでもらったものを代わりにcommitしている
+- A: 答えはない...
 
-- gitをデザイナーさんにどうやって使ってもらうか
+.. note::
 
-  - メールとかでもらったものを代わりにcommitしてもらっている
-  - 答えはない...
+   筆者から参考資料として、知り合いのデザイナーさんのGit関連の資料を共有しました
 
-- http://blog.uni-q.net/entry/2014/08/06/194117
-- C86：新刊「イメージできるGit」の告知 - Uni-Q blog http://blog.uni-q.net/entry/2014/08/06/194117
+   - http://blog.uni-q.net/entry/2014/08/06/194117
+   - `C86：新刊「イメージできるGit」の告知 - Uni-Q blog <http://blog.uni-q.net/entry/2014/08/06/194117>`_
 
-- github: 人のリポジトリを直したいとき、forkして修正してPull Reqeustを送って取り込んでもらうことができる
-- 仕事で github 使っている
+GitHubに関する質疑応答は以下のとおりです。
 
-  - 一緒に仕事をしている人が bitbucket を使っていない
-  - この本は bitbucket + mercurial で書いた
-
-- github ってネット上にある。企業で開発している人もコードを乗せちゃうと見れちゃう?
-
-  - 無料プランは公開リポジトリしか作れない
-  - お金を払うとプライベートリポジトリが作成できる
-  - 個人でプライベートリポジトリを作るなら bitbucket がおすすめ
+- Q: 仕事でGitHubを使っているか?
+- A: 使っている。ただし、この書籍はmercurial(別のバージョン管理ツール)とbitbucket(別のホスティングサービス)を使用して執筆した
+- Q: GitHubに企業で開発しているコードを乗せると他の人から見られるのでは?
+- A: 無料プランは公開リポジトリしか作れないが、お金を払うとプライベートリポジトリが作成できる。
+  仕事ではプライベートリポジトリを使用している。
+  個人でプライベートリポジトリが必要であれば、無料で作成できるbitbucketがおすすめ
 
 3-3 virtualenv
 --------------
-- バージョンがそれぞれで持てるよ
-- activate, deactivate
-- virtualenvwrapper 等の付随するツールがあるので、それを使うと楽かも
+この節ではプロジェクトごとにPythonの環境を独立させるためのvirtualenvについて解説しました。以下のコードはvirtualenvをインストールして利用している手順です。
 
-  - 2系と3系のvirtualenvの下にさらにvirtualenv作ってる
-  - 使い方は人それぞれ
+env環境でのみrequestsが利用可能になっていることが確認できます。
 
-- Windowsでファイルの関連付けは変わらない?
+.. code-block:: sh
+   :caption: virtualenvのインストールと利用
 
-  - ダブルクリック起動だとだめそう
+   $ pip install virtualenv    # pipコマンドでインストール
+   $ virtualenv env            # envという名前で環境を作成
+   New python executable in env/bin/python
+   Installing setuptools, pip...done.
+   $ . env/bin/activate        # env環境を有効にする
+   (env)$ pip install requests # requestsをインストール
+   (env)$ python
+   >>> import requests         # requestsをインポートできる
+   >>> quit()
+   (env)$ deactivate           # env環境を無効にする
+   $ python
+   >>> import requests         # requestsのインポートに失敗する
+   Traceback (most recent call last):
+   File "<stdin>", line 1, in <module>
+   ImportError: No module named requests
 
-- 本番環境に持って行く時はどうしている?
+virtualenvを使うことにより、プロジェクトごとに同じパッケージでも異なるバージョンを使用したりといったことが可能になります。
+また、vritualenvwrapperのようにvirtualenvをより便利に使うためのツールも提供されているので好みで使ってみてくださいという話がありました。
 
-  - opsworksを使って、deploy script の中で virtualenv の環境を作る
-  - pip freeze の話→バージョン固定で書きだされる
-  
+virtualenv環境をどのように作成してどのフォルダに配置するかというのは、人それぞれなので、正解はないという解説もありました。
+
+質疑応答では「Windowsでファイルの関連付けは変わらないのか?」という質問があり「おそらくファイルのダブルクリックやOS経由でPythonを呼び出すときには、virtualenv環境の外になるため元々のPythonが呼び出されるのではないか」という回答がされました。
+
+他に「本番環境にリリースするときにはどうしているのか」という質問があり、
+「opsworksを使用して、デプロイするスクリプトの中でvirtualenv環境を作成している」という回答がありました。
+
+プロジェクトで沢山のサードパーティ製パッケージを使用している場合、本番環境にインストールするのが大変ではないか?という質問がありました。
+pipコマンドにはpip freezeという現在インストールしているパッケージの一覧を出力するコマンドがあり、このコマンドを使用することによって、同じ環境が簡単に作成できるという解説がありました。pip freezeを使用した例は以下のようになります。
+
+.. code-block:: python
+   :caption: pip freezeの利用例
+
+   (env1)$ pip freeze > requirements.txt    # パッケージ一覧をファイル出力
+   (env1)$ cat requirements.txt             # パッケージ一覧を確認
+   alabaster==0.7.4
+   Babel==1.3
+   docutils==0.12
+   Jinja2==2.7.3
+   MarkupSafe==0.23
+   Pygments==2.0.2
+   pytz==2015.4
+   six==1.9.0
+   snowballstemmer==1.2.0
+   Sphinx==1.3.1
+   sphinx-rtd-theme==0.1.8
+   (env1)$ deactivate
+   $ virtualenv env2                        # 新規に環境(env2)を作成
+   $ . env2/bin/acitvate
+   (env2)$ pip freeze                       # パッケージが存在しない
+   (env2)$ pip install -r requirements.txt  # ファイルを使用してインストール
+   # ここで各パッケージがインストールされる
+
 3-4 テストと品質
 ----------------
 - テスト手でやると大変なので、ユニットテストを書く
@@ -255,23 +307,58 @@ Pythonでは `PyPI: Python Package Index <https://pypi.python.org/pypi>`_ とい
 
 ビアバッシュ(懇親会)
 ====================
-- 阿久津さんのLT
-  - 業務のためのPython勉強会
-  - Pythonスタートブックの辻さんと知り合いでできたよ
-  - 20人くらいの場所がいっぱいになった
-  - `業務のためのPython勉強会 - connpass <http://startpython.connpass.com/event/14076/>`_
-  - `S01 t2 akutsu_my_pythonhistory <http://www.slideshare.net/TakeshiAkutsu/s01-t2-akutsumypythonhistory>`_
-  - MIT Open Course Ware: 6.00.1x、6.0..2x、6/10からはじまったばっかりなので
-  - $50で修了証のPDFがもらえる
-  - 次回は7月2日、3回目は8月開催予定
-  - すごい人気がある
+読書会の終了後はビールとピザでビアバッシュという形式の懇親会を行いました。
+今回、実は私がネットでピザを注文したつもりが注文が完了しておらず、ギリギリのタイミングで再注文するというトラブルがありました。ピザが間に合ってよかったです。
 
-- iktakahiroのLT
+ひと通りピザを食べ終わったらライトニングトーク大会になりました。今回は私を含めて3名が話してくれました。
 
-  - チャットツールはなにを使っているか
-  - Slack, HipChat
-  - `slackpy 1.1.2 : Python Package Index <https://pypi.python.org/pypi/slackpy/1.1.2>`_
-  - loggingのhandlerにするのいいと思う
+LT1 - 業務のためのPython勉強会
+------------------------------
+阿久津(`@akucchan_world <https://twitter.com/akucchan_world>`_)さんからは自身が主催している
+`業務のためのPython勉強会 <http://startpython.connpass.com/event/14076/>`_
+について紹介がありました。
+
+この勉強会は阿久津さんが `Pythonスタートブック <http://gihyo.jp/book/2010/978-4-7741-4229-6>`_ の著者の辻さんと知り合って立ち上げたもので、第1回は20名くらいの会場がいっぱいになったそうです。
+
+第1回の勉強会の中で阿久津さんが発表した「私のPython独学奮闘記」をダイジェストで話してもらいました。以下の3種類のアプローチで学習を進めているという話でした。
+
+- Text: 「Pythonスタートブック」等の書籍での学習
+- Web: `MIT OpenCourseWare <http://ocw.mit.edu/index.htm>`_ での学習
+- Real: 勉強会への参加、企画
+
+.. raw:: html
+
+   <iframe src="http://www.slideshare.net/slideshow/embed_code/key/BiuW7thGxQ5tlc" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="http://www.slideshare.net/TakeshiAkutsu/s01-t2-akutsumypythonhistory" title="S01 t2 akutsu_my_pythonhistory" target="_blank">S01 t2 akutsu_my_pythonhistory</a> </strong> from <strong><a href="http://www.slideshare.net/TakeshiAkutsu" target="_blank">Takeshi Akutsu</a></strong> </div>
+
+初心者としてどのように勉強していったかなかなか興味深い発表でした。ぜひ、PyCon JPにもプロポーザルを出してほしいなと個人的に思いました。
+
+`第2回 <http://startpython.connpass.com/event/16104/>`_ は7月2日開催予定ですが、すでにキャンセル待ちで人気の勉強会のようです。第3回は8月開催予定とのことです。
+
+LT2 - slackpy
+-------------
+著者の一人の池内さん(`@iktakahiro <https://twitter.com/iktakahiro>`_)からは最初に業務で使っているチャットはなにか?という質問がありました。
+参加者からはSlack、HipChat、ChatWorkなどのツールの名前があがっていました。
+
+池内さんが作成している `slackpy <https://pypi.python.org/pypi/slackpy/>`_ というパッケージで、Slackに対して簡単にログメッセージを表示できることを紹介していました。
+
+ログレベルを指定するとSlack上で色分けして表示されるため見た目にもわかりやすいです。
+
+発表の後で「Pythonのloggingのhandlerにしてほしい」という提案がありました。
+次のバージョンアップに期待です。
+
+LT3 - Pythonエンジニア養成読本オモテウラ
+----------------------------------------
+最後は筆者のLTです。最初にPython関連イベント2つの告知をしました。どちらも参加者募集中、発表内容を募集中です。
+
+- `PyCon mini Sapporo 2015 <http://sapporo.pycon.jp/2015/>`_
+- `PyCon JP 2015 <https://pycon.jp/2015/>`_
+
+LTではどのようにこの本が作られていったのかという話をしました。
+Googleスプレッドシートにレビューの指摘を書いてもらい、その対応状況をGoogle Apps ScriptでSlackチャットに投げたりといった工夫について紹介しました。
+
+.. raw:: html
+
+   <iframe src="http://www.slideshare.net/slideshow/embed_code/key/aYYteVVOVe7N7O" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="http://www.slideshare.net/takanory/two-sidesofpythonengineertrainingbookplonesymposiumtokyo" title="Two sides of &quot;Python Engineer Training Book&quot;" target="_blank">Two sides of &quot;Python Engineer Training Book&quot;</a> </strong> from <strong><a href="http://www.slideshare.net/takanory" target="_blank">Takanori Suzuki</a></strong> </div>
 
 まとめ
 ======
