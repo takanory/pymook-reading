@@ -47,7 +47,7 @@ Appendix1は私の担当です。
 .. raw:: html
 
    <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Remember the exciting moments? Photos here! <a href="http://t.co/sECvyoE7eV">http://t.co/sECvyoE7eV</a> <a href="https://twitter.com/hashtag/pyconapac2015?src=hash">#pyconapac2015</a> <a href="http://t.co/DFsZEqovms">pic.twitter.com/DFsZEqovms</a></p>&mdash; PyConTW (@PyConTW) <a href="https://twitter.com/PyConTW/status/611410021948243968">June 18, 2015</a></blockquote>
-   <script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+   <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 PyCon APAC、PyCon Singaporeについては `gihyo.jp <http://gihyo.jp/>`_ の以下の連載記事でレポートされています。
 こちらもぜひ読んでみてください。
@@ -111,18 +111,12 @@ Python標準ライブラリについては下記のドキュメントにまと�
 余談として **logging** はバッチファイルなどでも途中経過を出力するときに使うと便利であるという話をしました。
 また、コマンドライン引数の処理は **optparse** と **argparse** が標準ライブラリにありますが、個人的にはargparseがお勧めであるという話もしました。
 
-- pipコマンドをWindowsで→sudoしなければOK
-- shutil, re
-- argparse
-- logging
-- shutilはosでできるけど、より楽にしてくれる
-
 Pythonをさらに強力にするサードパーティ製パッケージ
 --------------------------------------------------
 この節では標準ライブラリ以外に多数のサードパーティ製パッケージが提供されていることを紹介しています。
 Pythonでは `PyPI: Python Package Index <https://pypi.python.org/pypi>`_ というサイトで提供されており、 **pip** コマンドでインストールして使用できます。
 
-ここで「Windowsで書いてある通りにpipをインストールができなかった」という質問がありました。書籍上のコードではLinuxを想定しいるので **sudo** でrootユーザーになってpipをインストールしています。
+ここで「Windowsで書いてある通りにpipをインストールができなかった」という質問がありました。書籍上のコードではLinuxを想定しているので **sudo** でrootユーザーになってpipをインストールしています。
 「Windowsではsudoはおそらく不要である」という回答をしましたが、無事pipコマンドがインストールできたようです。
 
 ちなみにpipのインストールは ``https://bootstrap.pypa.io/get-pip.py`` をダウンロードして ``python get-pip.py`` を実行して行います。
@@ -259,51 +253,43 @@ pipコマンドにはpip freezeという現在インストールしているパ�
 
 3-5 Sphinx
 ----------
-- plantumlを入れるのを使ってた
-- 1画像1プロセス
+`Sphinx <htttp://sphinx-users.jp/>`_ はreStructedTextという形式で作成したドキュメントを、HTML、PDF等に変換できるツールです。
+さきほど紹介したPythonのドキュメントもSphinxで作成されています。
 
-  - Javaなので起動が遅い
-  - 手元でbuildしないほうがいいのでは
+しまださんは `sphinxcontrib-plantuml <https://pypi.python.org/pypi/sphinxcontrib-plantuml>`_ を使用してURLの図を作成しているそうです。
+しかし、複数の図があると1画像ごとにJavaのプロセスが起動するため、時間がかかるそうです。
 
-- いろんなdirectiveがある
+Sphinxにはこのように拡張機能(directive)でさまざまな機能を拡張できます。
+`sphinx-contrib <https://bitbucket.org/birkenfeld/sphinx-contrib/>`_ に拡張機能がまとめてあるので参照してみてください。
 
-  - sphinx contribを見よう
+「仕事でSphinxはどんなところで使っているか?」という質問がありました。
+最初にプロジェクトの要求リストをSphinxで書いて、コードの中にそのリストをコピーして実装を薦めたりしていたそうです。
+ただ、途中からなし崩し的にうまくいかなくなり、ドキュメントとコードの同一性を保つのが難しいという話がありました。
 
-- 仕事ではどんなところで使っているか?
-
-  - 最初にプロジェクトの要求リストとかをSphinxで書いている
-  - コードの中にSphinxをコピーして実装している
-  - 途中からなし崩し的にうまくいかなくなる
-  - ドキュメントとコードの同一性を保つのがつらい
-  - ドキュメントはしっかり書きたい
-
-- doxygen で sourcecode -> xml -> sphinx とかやっている
-
-  - dqn ってツールを昔作っていた
+また、以前 `Doxygen <http://www.stack.nl/~dimitri/doxygen/>`_ でコードを解析した結果のXMLを元にSphinxドキュメントを生成する
+`dqn <https://pypi.python.org/pypi/dqn>`_
+というツールを作っていたそうです。
 
 3-6 PyCharm
 -----------
-- デバッグツールはもうちょっと
-- .idea: ウィンドウを開いた、開かないとかの情報も入っている
-- `PyCon APAC/Taiwan 2015 Python Debugger Uncovered - Dmitry Trofimov <https://tw.pycon.org/2015apac/en/program/39>`_
-- buildoutという環境構築ツールが有る
+この節では `PyCharm <https://www.jetbrains.com/pycharm/>`_ というPython用のIDE(統合開発環境)について解説しました。
 
-  - PyCharm上で実行するときにハマった
+PyCharmのデバッグツールはもうちょっとというコメントがありました。
+PyCon APAC 2015ではPyCharmを作っているjetBrainsの人が
+`Python Debugger Uncovered <https://tw.pycon.org/2015apac/en/program/39>`_
+という発表をしていました。
 
-- 実務上はCLIと言っているが、PyCharmはどこで使っている?
+また、 `buildout <http://www.buildout.org/en/latest/>`_ という環境構築ツールがありますありますが、これとPyCharmを組み合わせるてハマったことがあるそうです。
 
-  - 新しく入ってきた人にはPyCharmの設定とか、デバッグの使い方とか
-  - チームで開発するときにみんなでやるのは PyCharm がよさそう
-  - 一人の中で使い分けることはあんまりない?→ないです
-  - PyCharm で作った環境は CLI でも使える?
+質疑応答では「実務上はCLIを使っているそうだが、PyCharmはどこで使っているのか」という質問がありました。
+回答としては、新しく入ってきた人にはPyCharmの設定とかやデバッグの使い方を伝えている。チームで開発するときにはPyCharmがよさそうとのことでした。
 
-- こんなん作りました的なのないですか
-
-  - battle hack に参加した
-  - スマホアプリ作った
-  - サーバーはPython, Tornadoで
-  - 最初は bluemix だったがあとで heroku にした
-  - Heroku賞もらった
+また「なにか実際に開発した例を教えてほしい」という質問があり、
+`BattleHack Tokyo <https://2015.battlehack.org/tokyo?locale=ja>`_
+というイベントでスマホアプリのサーバー側を
+`Tornado Web Server <http://www.tornadoweb.org/en/stable/>`_
+で作成したそうです。
+Heroku 上でサーバーを動かし、Heroku賞をもらったそうです。すごいですね。
 
 ビアバッシュ(懇親会)
 ====================
@@ -328,7 +314,7 @@ LT1 - 業務のためのPython勉強会
 
 .. raw:: html
 
-   <iframe src="http://www.slideshare.net/slideshow/embed_code/key/BiuW7thGxQ5tlc" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="http://www.slideshare.net/TakeshiAkutsu/s01-t2-akutsumypythonhistory" title="S01 t2 akutsu_my_pythonhistory" target="_blank">S01 t2 akutsu_my_pythonhistory</a> </strong> from <strong><a href="http://www.slideshare.net/TakeshiAkutsu" target="_blank">Takeshi Akutsu</a></strong> </div>
+   <iframe src="//www.slideshare.net/slideshow/embed_code/key/BiuW7thGxQ5tlc" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/TakeshiAkutsu/s01-t2-akutsumypythonhistory" title="S01 t2 akutsu_my_pythonhistory" target="_blank">S01 t2 akutsu_my_pythonhistory</a> </strong> from <strong><a href="//www.slideshare.net/TakeshiAkutsu" target="_blank">Takeshi Akutsu</a></strong> </div>
 
 初心者としてどのように勉強していったかなかなか興味深い発表でした。ぜひ、PyCon JPにもプロポーザルを出してほしいなと個人的に思いました。
 
@@ -358,7 +344,7 @@ Googleスプレッドシートにレビューの指摘を書いてもらい、�
 
 .. raw:: html
 
-   <iframe src="http://www.slideshare.net/slideshow/embed_code/key/aYYteVVOVe7N7O" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="http://www.slideshare.net/takanory/two-sidesofpythonengineertrainingbookplonesymposiumtokyo" title="Two sides of &quot;Python Engineer Training Book&quot;" target="_blank">Two sides of &quot;Python Engineer Training Book&quot;</a> </strong> from <strong><a href="http://www.slideshare.net/takanory" target="_blank">Takanori Suzuki</a></strong> </div>
+   <iframe src="//www.slideshare.net/slideshow/embed_code/key/aYYteVVOVe7N7O" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/takanory/two-sidesofpythonengineertrainingbookplonesymposiumtokyo" title="Two sides of &quot;Python Engineer Training Book&quot;" target="_blank">Two sides of &quot;Python Engineer Training Book&quot;</a> </strong> from <strong><a href="//www.slideshare.net/takanory" target="_blank">Takanori Suzuki</a></strong> </div>
 
 まとめ
 ======
