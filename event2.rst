@@ -247,9 +247,37 @@ pipコマンドにはpip freezeという現在インストールしているパ�
 
 3-4 テストと品質
 ----------------
-- テスト手でやると大変なので、ユニットテストを書く
-- doctestの説明
-- doctestは短いものだけ、複雑なものは unittest を書く
+この節ではPythonでのテストについての解説を行いました。
+テストは大事ですが手で実行すると大変なので、ユニットテストコードを書きましょうという話です。
+
+最初にPythonには `doctest <http://docs.python.jp/2/library/doctest.html>`_ というコメント(docstring)にテストを書く方法があります。
+次のコード例のように書くと、docstringがそのままサンプルコードになり、ユニットテストのコードにもなるため非常に便利です。
+
+.. code-block:: python
+   :caption: doctestのサンプル
+
+   # -*- coding: utf-8 -*-
+   def get_ok():
+   """
+   文字列 'OK' を返す
+   >>> get_ok()
+   'OK'
+   """
+   
+   return 'OK'
+
+doctestは以下のように実行します。上記のコードを ``doctest_sample.py`` というファイルに保存します。
+なお、エラーが発生しない場合は何も出力されません。
+
+.. code-block:: sh
+   :caption: doctestを実行
+
+   $ python -m doctest doctest_sample.py
+   $
+
+
+doctestで複雑な単体テストコードを書こうとすると、コメントが長くなりすぎてわかりにくくなります。
+複雑な単体テストを行いたい場合は `unittest <http://docs.python.jp/2/library/unittest.html>`_ を使用して、ユニットテストコードを書きましょうという説明がありました。
 
 3-5 Sphinx
 ----------
