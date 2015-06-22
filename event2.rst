@@ -109,7 +109,7 @@ Python標準ライブラリについては下記のドキュメントにまと�
 答えはそのとおりですが、例えばshutilだと ``copytree(src, dst)`` でディレクトリツリーをまとめてコピーしてくれますが、osモジュールで実装しようとすると、自分でディレクトロとファイルを走査して一つづつコピーするなど大変です。そういう意味でも shutil はユーティリティー的に便利な機能を提供してくれています。
 
 余談として **logging** はバッチファイルなどでも途中経過を出力するときに使うと便利であるという話をしました。
-また、コマンドライン引数の処理は **optparse** と **argparse** が標準ライブラリにありますが、個人的にはargparseがお勧めであるという話もしました。
+また、コマンドライン引数の処理は **optparse** と **argparse** が標準ライブラリにありますが、 `optparseは廃止予定 <http://docs.python.jp/3.4/library/optparse.html>`_ のため、argparseを使ってください。
 
 Pythonをさらに強力にするサードパーティ製パッケージ
 --------------------------------------------------
@@ -284,7 +284,7 @@ doctestで複雑な単体テストコードを書こうとすると、コメン�
 `Sphinx <htttp://sphinx-users.jp/>`_ はreStructedTextという形式で作成したドキュメントを、HTML、PDF等に変換できるツールです。
 さきほど紹介したPythonのドキュメントもSphinxで作成されています。
 
-しまださんは `sphinxcontrib-plantuml <https://pypi.python.org/pypi/sphinxcontrib-plantuml>`_ を使用してURLの図を作成しているそうです。
+嶋田さんは `sphinxcontrib-plantuml <https://pypi.python.org/pypi/sphinxcontrib-plantuml>`_ を使用してURLの図を作成しているそうです。
 しかし、複数の図があると1画像ごとにJavaのプロセスが起動するため、時間がかかるそうです。
 
 Sphinxにはこのように拡張機能(directive)でさまざまな機能を拡張できます。
@@ -300,7 +300,7 @@ Sphinxにはこのように拡張機能(directive)でさまざまな機能を拡
 
 3-6 PyCharm
 -----------
-この節では `PyCharm <https://www.jetbrains.com/pycharm/>`_ というPython用のIDE(統合開発環境)について解説しました。
+この節では `PyCharm <https://www.jetbrains.com/pycharm/>`_ というPython用の統合開発環境(IDE)について解説しました。
 
 PyCharmのデバッグツールはもうちょっとというコメントがありました。
 PyCon APAC 2015ではPyCharmを作っているjetBrainsの人が
