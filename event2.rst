@@ -307,7 +307,7 @@ PyCon APAC 2015ではPyCharmを作っているjetBrainsの人が
 `Python Debugger Uncovered <https://tw.pycon.org/2015apac/en/program/39>`_
 という発表をしていました。
 
-また、 `buildout <http://www.buildout.org/en/latest/>`_ という環境構築ツールがありますありますが、これとPyCharmを組み合わせるてハマったことがあるそうです。
+また、 `buildout <http://www.buildout.org/en/latest/>`_ という環境構築ツールがありますが、これとPyCharmを組み合わせるてハマったことがあるそうです。
 
 質疑応答では「実務上はCLIを使っているそうだが、PyCharmはどこで使っているのか」という質問がありました。
 回答としては、新しく入ってきた人にはPyCharmの設定とかやデバッグの使い方を伝えている。チームで開発するときにはPyCharmがよさそうとのことでした。
