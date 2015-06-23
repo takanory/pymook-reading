@@ -258,13 +258,13 @@ pipコマンドにはpip freezeという現在インストールしているパ�
 
    # -*- coding: utf-8 -*-
    def get_ok():
-   """
-   文字列 'OK' を返す
-   >>> get_ok()
-   'OK'
-   """
+       """
+       文字列 'OK' を返す
+       >>> get_ok()
+       'OK'
+       """
    
-   return 'OK'
+       return 'OK'
 
 doctestは以下のように実行します。上記のコードを ``doctest_sample.py`` というファイルに保存します。
 なお、エラーが発生しない場合は何も出力されません。
