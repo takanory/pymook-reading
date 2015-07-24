@@ -58,15 +58,55 @@
 
 4-1 IPythonの使い方
 -------------------
-ちょうど3.0が校正の時にリリースされた。
-そのため、2.4を対象とした。
-``ipython[notebook]`` とするとあとででてくるIPython Notebookで使うものもインストールされるよ。
+この節ではIPythonの基本的な使い方について解説しています。
 
-- コマンドラインでIPython使っている人っている?→いない
+IPythonはPythonの対話モードをより強力にしたものです。
+IPythonでは以下の機能を備えています。
 
-  - Notebookでさわっている
-  - IDEで触っている人
-  - 対話モードで使う人はあまりいなかった
+- 補完: Tabを入力してモジュール名やオブジェクト名を補完できます
+- Magic Functions: ``%pwd`` と入力して現在のディレクトリ名を取得したり、  ``%env`` で環境変数を取得できます
+- OSのコマンドライン環境との統合: ``!`` のあとにコマンドを入力するとOS上で実行してその結果を表示します
+- オブジェクトの確認: オブジェクト名の後ろに ``?`` をつけるとオブジェクトの型、長さ等の情報を表示します
+- Notebook: 後述するIPython Notebookの機能を提供します
+
+書籍を校正しているときにIpythonのバージョン3.0がリリースされましたが、差分の反映が間に合わないためバージョン2.4を対象としました。
+またインストール時に以下のようにしているのは、あとで出てくるIPython Notebookで使うためのモジュールもまとめてインストールするためです。
+
+.. code-block:: sh
+   :caption: pip で IPython をインストール
+
+   $ pip install ipython[notebook]==2.4.0
+
+IPythonのNotebook以外の機能を利用した例は以下の様な感じです。
+
+.. code-block:: python
+   :caption: IPython の利用例
+
+   In [1]: import r # ←ここで Tab を入力
+   random readline resource rfc822 rmagic runpy
+   re repr rexec rlcompleter robotparser
+   In [2]: %pwd
+   Out[2]: u'/home/pydata/pydata'
+   In [3]: !ls -l
+   total 8
+   drwxr-xr-x 25 pydata pydata 850 1月 1 10:00 bin/
+   drwxr-xr-x 3 pydata pydata 102 1月 1 10:00 include/
+   drwxr-xr-x 3 pydata pydata 102 1月 1 10:00 lib/
+   -rw-r--r-- 1 pydata pydata 60 1月 1 10:00 pip-selfcheck
+   In [4]: data = [1, 2, 3]
+
+   In [5]: data?
+   Type: list
+   String form: [1, 2, 3]
+   Length: 3
+   Docstring:
+   list() -> new empty list
+   list(iterable) -> new list initialized from iterable's items
+
+ここで「コマンドラインでIPython使っている人はいるのか?」という質問がありました。解除ではコマンドラインで使っている人はあまりおらず、IPythonは以下の2パターンで使用している人が多いようでした。
+
+- IPython Notebookで使用している
+- IDE経由でIPythonを使用している
 
 4-2 PyData用パッケージの基本
 ----------------------------
