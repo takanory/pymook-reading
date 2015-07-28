@@ -252,11 +252,30 @@ IPython Notebookを使用するには普通に ``pip install ipython[notebook]``
     
 ビアバッシュ(懇親会)
 ====================
-- 業務のためののLT
-- 自分のProposalのLT(takesxi)
-- PyCOnとかのLT(checkpoint)
+読書会の終了後は毎回恒例の懇親会(ビアバッシュ)です。
+ビールとピザを片手に会話を楽しみ、その後ライトニングトークを行いました。
+
+一つ目は前回に続いて阿久津(`@akucchan_world <https://twitter.com/akucchan_world>`_)さんから
+`業務のためのPython勉強会#3 - connpass <http://startpython.connpass.com/event/17073/>`_ の紹介がありました。
+次回は8月10日(月)に開催予定とのことです。
+
+著者の一人である嶋田 健志(`@TakesxiSximada <https://twitter.com/TakesxiSximada>`_)さんからは自身が出した PyCon JP 2015 の Proposal について紹介がありました。
+Twitter/Facebook 等でシェアをよろしくお願いしますとのことです。
+なお、チュートリアルの方は「Pythonエンジニア養成読本」の内容がベースとなっています。
+
+- `【初心者向けPythonチュートリアル】Webスクレイピングに挑戦してみよう <https://pycon.jp/2015/ja/proposals/vote/59/>`_
+- `Python × Bluemix でやったHack-a-thonでの超短期間認識系アプリ開発事例 <https://pycon.jp/2015/ja/proposals/vote/118/>`_
+
+同じく著者の一人の関根 裕紀(`@checkpoint <https://twitter.com/checkpoint>`_)さんからは2015年10月に開催される `PyCon JP 2015 <https://pycon.jp/2015/>`_ のお知らせや、現在 `トーク一覧 <https://pycon.jp/2015/ja/proposals/vote_list/>`_ が参照できるので、ぜひTwitter/Facebookで拡散してほしいという話がありました。
+
 - ついでにPythonのヒカラボイベントの紹介    
 
 まとめ
 ======
+3回目の読書会はビアバッシュでのライトニングトークも盛り上がりました。
+次回は8月XX日(木)に開催します。内容は「第5章 入門Webアプリケーション開発」です。
+本を読んで試して疑問がある方、もっとここが知りたい!!という所がある方など、ぜひ参加してください。参加申し込みは下記のURLからできます。
 
+- (ここにURL入れる)
+
+では、また来月もよろしくお願いします。
