@@ -187,48 +187,45 @@ R言語をすでに使っている人は、pandas使ってみるとよいかも�
 
 余談としてデータ分析の高速化についての PyData.Tokyo でのレポートが紹介されていました。
   
-- `どこまで速くできる？ 達人に学ぶPython超高速データ分析～PyData.Tokyo Meetup #4イベントレポート (1/3)：CodeZine（コードジン） <http://codezine.jp/article/detail/8687>`_
+- `どこまで速くできる？ 達人に学ぶPython超高速データ分析～PyData.Tokyo Meetup #4イベントレポート <http://codezine.jp/article/detail/8687>`_
 
 4-3 はじめてのIPython Notebook
 ------------------------------
-3で変わったところ。
+IPython NotebookはWebブラウザから対話的にPythonプログラミングなどを行う環境です。
+IPython の最新バージョンは 3.2.1 となっており、書籍で紹介していた 2.4 と大きく変わったところは、ロゴと名前が `Jupyter <https://jupyter.org/>`_ になったことです。
+Jupyter は Python だけでなく Julia、R などさまざまな言語に対応しています。
 
-- ロゴが変わった。jupyterになった。
+最近ではIPython Notebookを使用してプレゼンを行う人もおり、この日も追加資料として以下の Notebook を利用して解説が行われました。
+なお、下記のリンクをクリックすると IPython Notebook の中身が表示されますが、これは GitHub が Notebook ファイルの表示に対応するようになったためです(`GitHub + Jupyter Notebooks = <3 <https://github.com/blog/1995-github-jupyter-notebooks-3>`_)。
 
-Notebookでプレゼンする人もけっこういる。
+- `pymook_reading_20150723.ipynb <https://github.com/iktakahiro/ipython-notebook-sample/blob/master/pymook/pymook_reading_20150723.ipynb>`_
 
-グラフがうれしい。
 
-joinをfor文でまわしてif文とかだとつらいよね。SQLっぽく処理できるよ。
-inner joinもできる。
+上記のNotebookを使用して、2つのデータを結合する例を解説しました。
+for文をまわしてif文で分岐なども可能ですが、Pandasを利用すると ``merge()`` メソッドでSQLのような感じで2つのデータを結合できます。
 
-0.16.2でpipeが追加になった。.pipe(メソッド)って書くとその処理がされる。
-列が追加されたりもできるらしい。面白い。
+また、Pandas 0.16.2で ``pipe()`` メソッドが追加になりました。
+データフレームに対して ``.pipe(f)`` で処理を行うフィルターのようなもの関数を指定できます。また ``pipe()`` は複数重ねることも可能なため、サンプルコードでは食料品のデータに対して割引処理と消費税計算を行っています。
 
-グラフはggplot形式がよさげ。でもプレゼンじゃなければグラフ頑張らなくてもいいのでは。
+IPython Notebookでは棒グラフなどのグラフ描画ができますが、見た目的にはデフォルト形式よりもggplot形式がおすすめとのことです。他にも以下のようなグラフ描画用のライブラリが紹介されていました。ただし、プレゼン資料でなければグラフの見た目について頑張る必要はないとい話もしていました。
 
-`Seaborn: statistical data visualization — seaborn 0.6.0 documentation <http://stanford.edu/~mwaskom/software/seaborn/>`_
-`Welcome to Bokeh — Bokeh 0.9.1 documentation <http://bokeh.pydata.org/en/latest/>`_
+- `Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_
+- `Bokeh <http://bokeh.pydata.org/en/latest/>`_
 
-簡単なのはmatplotlibでよい。
+他の人が作成した Notebook ファイルが閲覧できる `nbviewer <http://nbviewer.ipython.org/>`_ というサイトがあります。このサイトはグラフ描画などの参考になります。
 
-githubでIPython Notebookのソース(.ipynb)があると、そのまま見れるようになった。
+IPython Notebookを使用するには普通に ``pip install ipython[notebook]`` でもよいのですが、 `Wakari.io <https://wakari.io/>`_ というサイトではクラウド上で IPython Notebook が使用できるのでお試しで使うには便利です。
+また、 `Anaconda <https://store.continuum.io/cshop/anaconda/>`_ というデータ分析用のパッケージのセットがありますが、この中にも IPython Notebook が含まれています。
 
-`nbviewer <http://nbviewer.ipython.org/>`_ が参考になる。
+`Rodeo <http://blog.yhathq.com/posts/introducing-rodeo.html>`_ という Web ブラウザ上で動作する Python の IDE があります。これは IPython Notebook と似ていますが、よりリッチな操作ができるそうです。
+データフレームの値を見て、対話形式で絞り込みなどが行えるそうです。
 
-`Wakari - Web-based Python Data Analysis <https://wakari.io/>`_
-はクラウド上でIPython Notebookが使える。
-Anacondaというデータ分析用のパッケージのセットがあるが、それも最初から入っている。
-`Anaconda Scientific Python Distribution <https://store.continuum.io/cshop/anaconda/>`_
-
-`ŷhat | Rodeo: A data science IDE for Python <http://blog.yhathq.com/posts/introducing-rodeo.html>`_
-というツールが有る。IPython Noteboookっぽいやつで、よりリッチ。
-データフレームの値を見て、絞り込みとかも対話形式でできる。
-
-IPython Notebookはあまり長いコードを書くのには向いていない。Rodeoは向いてるかも。
+まとめとして、 IPython Notebook はあまり長いコードを書くのには向いていないので、サンプルのような短めのコードと結果を参照するのに使用することをおすすめするとのことです。
+もしかしたら Rodeo は長いコードを書く用途にも向いているかも知れないとのことでした。このあたりは実際に使ってみた人の感想を聞いてみたいところです。
 
 4-4 ［実践編］オープンデータの利用と可視化
 ------------------------------------------
+
 オープンデータだけど見つからないとかデータ取得が面倒なものが多い。
 横浜のデータはちゃんとしてる。
 
