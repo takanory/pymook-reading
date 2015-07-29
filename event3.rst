@@ -168,8 +168,8 @@ R言語をすでに使っている人は、Pandas使ってみるとよいかも�
 ~~~~~~~~
 質疑応答では以下の様な議論がありました。
 
-- Q: Pandasの DataFrame をSelializeしてサーバークライアント間(どちらもPython)で通信している。パフォーマンスが出るのはなにか?
-- A: 両方Pythonだったらpickleでいいのでは? `to_msgpack() <http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_msgpack.html>`_ があるので、パフォーマンスがよさそう
+- Q: Pandasの DataFrame をSelialize(オブジェクトをファイルなどに書き出し可能な形式に変換すること)してサーバークライアント間(どちらもPython)で通信している。パフォーマンスが出るのはなにか?
+- A: 両方Pythonだったら `pickle <http://docs.python.jp/2/library/pickle.html>`_ でいいのでは?DataFrameには `to_msgpack() <http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_msgpack.html>`_ メソッドがあるので、パフォーマンスがよいかも知れない
 - Q: Pandas を Version 0.16 にしたら warning  が出るようになった
 - A: 警告表示を抑制するオプションを使うでとりあえずは大丈夫だと思う
 - Q: 以前 Python 2 と Pandasで書いたスクリプトを Python 3 で使いたい。気をつけるところはあるか?
@@ -184,8 +184,8 @@ R言語をすでに使っている人は、Pandas使ってみるとよいかも�
 4-3 はじめてのIPython Notebook
 ------------------------------
 IPython NotebookはWebブラウザから対話的にPythonプログラミングなどを行う環境です。
-IPython の最新バージョンは 3.2.1 となっており、書籍で紹介していた 2.4 と大きく変わったところは、ロゴと名前が `Jupyter <https://jupyter.org/>`_ になったことです。
-Jupyter は Python だけでなく Julia、R言語などさまざまな言語に対応しています。
+IPython の最新バージョンは 3.2.1 となっています。書籍で紹介していたバージョン 2.4 と大きく変わったところは、ロゴと名前が `Jupyter <https://jupyter.org/>`_ になったことです。
+IPythonは今後はJupyterとして、PythonだけでなくJulia、R言語などさまざまな言語に対応したNotebook機能を提供していきます。
 
 最近ではIPython Notebookを使用してプレゼンを行う人もおり、この日も追加資料として以下の Notebook を利用して解説が行われました。
 なお、下記のリンクをクリックすると IPython Notebook の中身が表示されますが、これは GitHub が Notebook ファイルの表示に対応するようになったためです(`GitHub + Jupyter Notebooks = <3 <https://github.com/blog/1995-github-jupyter-notebooks-3>`_)。
