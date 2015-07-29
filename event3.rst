@@ -103,7 +103,7 @@ IPythonのNotebook以外の機能を利用した例は以下の様な感じで�
    list() -> new empty list
    list(iterable) -> new list initialized from iterable's items
 
-ここで「コマンドラインでIPython使っている人はいるのか?」という質問がありました。解除ではコマンドラインで使っている人はあまりおらず、IPythonは以下の2パターンで使用している人が多いようでした。
+ここで「コマンドラインでIPython使っている人はいるのか?」という質問がありました。会場ではコマンドラインで使っている人はあまりおらず、IPythonは以下の2パターンで使用している人が多いようでした。
 
 - IPython Notebookで使用している
 - IDE経由でIPythonを使用している
@@ -113,13 +113,7 @@ IPythonのNotebook以外の機能を利用した例は以下の様な感じで�
 この節ではPyDataというカテゴリで語られる、Pythonでデータ解析を行うためのパッケージについて紹介しています。
 
 著者の池内さんの会社ではデータ解析には `R言語 <https://ja.wikipedia.org/wiki/R%E8%A8%80%E8%AA%9E>`_ を使っている人が多いそうです。
-他には `SAS <http://www.sas.com/>`_ などの分析ツールを使う場合もあるそうです。
-学術領域では `MATLAB <https://jp.mathworks.com/programs/nrd/matlab-trial-request.html?ref=ggl&s_eid=ppc_8182277122&q=matlab>`_ を使っていたり、データの加工、集積にはSQLを使っていることもあるそうです。
-その次にPythonを使っているという感じだそうです。
-
-.. warning::
-
-   その次とはどういう意味か確認する
+データの加工、集積にはSQLを使っている人が多く、Pythonのユーザーは最近増えてきているそうです。
 
 R言語を使用している理由としては、論文で出てきたアルゴリズムの実装やライブラリがR言語で公開されるのが早く、R言語そのものの情報も多いのだそうです。
 
@@ -128,8 +122,6 @@ PyData関連のパッケージを使用すればデータ解析もできるし�
 データ解析した結果をWebで表示するデモアプリを作ったり、といったことも一つの言語で完結しているのが魅力だと語っていました。
 
 また、Pythonはプログラミング言語として書きやすいし読みやすいことも魅力であると言っていました。
-
-Pandas 0.16.2 で新しい機能が出たので補足する。
 
 書籍の中では最近はやっている深層学習(ディープラーニング)について
 `Pylearn2 <http://deeplearning.net/software/pylearn2/>`_ を紹介していましたが、
@@ -143,7 +135,7 @@ NumPy
 Python では大量のデータを for 文で処理すると時間がかかります。
 しかし、 `NumPy <http://www.numpy.org/>`_ を上手に使うと、行列計算などを高速に処理ができます。
 
-行列のデータを PyCharm (Python用のIDE)できれいに表示されます。
+NumPyの行列データは `PyCharm <https://www.jetbrains.com/pycharm/>`_ (Python用のIDE)で可視化でき、見やすいです。
 PyCharmは最近PyData系のサポートが厚くなっているそうです。
 
 余談ですが画像処理の `OpenCV <http://opencv.org/>`_ にはNumPyが必要です。
@@ -151,11 +143,11 @@ PyCharmは最近PyData系のサポートが厚くなっているそうです。
 
 SciPy
 ~~~~~
-マーケティングのときには「距離(似ているかどうか)」が大事であり、ここでいう距離とは「ユーザーが似ている」「アンケート結果が似ている」といったものを表します。
-この距離計さんは `SciPy <http://www.scipy.org/>`_ を使用すると簡単にできるそうです。
-距離の計算にはいろいろな種類がありますが、 `ユークリッド距離 <https://ja.wikipedia.org/wiki/%E3%83%A6%E3%83%BC%E3%82%AF%E3%83%AA%E3%83%83%E3%83%89%E8%B7%9D%E9%9B%A2>`_ が有名です。
+マーケティング領域のデータ分析では、対象がどの程度似ているかどうかを距離計算によって測ることがよくあります。
+距離計算は、「ユーザーがどの程度似ている」「アンケート結果がどの程度似ている」といったものを表します。
+距離の計算方法にはいろいろな種類がありますが、 `ユークリッド距離 <https://ja.wikipedia.org/wiki/%E3%83%A6%E3%83%BC%E3%82%AF%E3%83%AA%E3%83%83%E3%83%89%E8%B7%9D%E9%9B%A2>`_ が有名です。距離計算は `SciPy <http://www.scipy.org/>`_ を使用すると簡単にできるそうです。
 
-SciPyは非常に沢山の機能を提供しており、個人的にはツールとしてSciPyを使うことはあまりなさそうとのことです。
+SciPyは距離計算以外にも非常に沢山の機能を提供しています。
 
 SymPy
 ~~~~~
@@ -183,7 +175,7 @@ R言語をすでに使っている人は、pandas使ってみるとよいかも�
 - Q: 以前 Python 2 と pandasで書いたスクリプトを Python 3 で使いたい。気をつけるところはあるか?
 - A: pandas としては問題ない。日本語周りは気をつけた方がいい。
 - Q: Python で for 文を使ってはいけないのか。map とかはなかなか難しい。
-- A: for 文だと遅いのでわかりやすい場合は内包表記の方が速い。大量のデータを使う場合は NumPy を使いましょう。また map、filter は勉強しましょう。
+- A: 大量のデータを扱う場合は for 文だと遅いのでNumPyをつかった計算ができないか検討しましょう。通常のfor文よりも内包表記のほうが僅かに速いです。またPythonの組み込み関数 `map <http://docs.python.jp/2/library/functions.html#map>`_ 、 `filter <http://docs.python.jp/2/library/functions.html#filter>`_ は勉強しましょう。
 
 余談としてデータ分析の高速化についての PyData.Tokyo でのレポートが紹介されていました。
   
@@ -193,7 +185,7 @@ R言語をすでに使っている人は、pandas使ってみるとよいかも�
 ------------------------------
 IPython NotebookはWebブラウザから対話的にPythonプログラミングなどを行う環境です。
 IPython の最新バージョンは 3.2.1 となっており、書籍で紹介していた 2.4 と大きく変わったところは、ロゴと名前が `Jupyter <https://jupyter.org/>`_ になったことです。
-Jupyter は Python だけでなく Julia、R などさまざまな言語に対応しています。
+Jupyter は Python だけでなく Julia、R言語などさまざまな言語に対応しています。
 
 最近ではIPython Notebookを使用してプレゼンを行う人もおり、この日も追加資料として以下の Notebook を利用して解説が行われました。
 なお、下記のリンクをクリックすると IPython Notebook の中身が表示されますが、これは GitHub が Notebook ファイルの表示に対応するようになったためです(`GitHub + Jupyter Notebooks = <3 <https://github.com/blog/1995-github-jupyter-notebooks-3>`_)。
@@ -236,7 +228,7 @@ IPython Notebookを使用するには普通に ``pip install ipython[notebook]``
 - Q: 横浜のグラフを、地図データで可視化しようと思ったが挫折した。
   地図データの可視化は `basemap <http://matplotlib.org/basemap/>`_ がおすすめか?
 - A: Pythonではないが、 `Tableau <http://www.tableau.com/ja-jp>`_ (BIツール)で地図上にマッピングとかをしているが、日本の地図はそこまで細かくない。
-  日本だと県ごと白地図しかない。今だとJAXAの衛星データとかにマッピングすると面白そう。
+  日本だと県ごと白地図しかない。今だとJAXAの衛星データ(`全球高精度デジタル3D地図 (ALOS World 3D) <http://www.eorc.jaxa.jp/ALOS/aw3d/>`_)とかにマッピングすると面白そう。
 - Q: IPython Notebookをサーバーに入れて、みんなが使えるようにできないか?
 - A: 自分が以前やったのは、複数のサーバーをポートを分けて実行した。
 - Q: Notebook 上でデモするときに、パラメーターをユーザーに入力させることは可能か?
