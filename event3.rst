@@ -193,17 +193,22 @@ R言語をすでに使っている人は、Pandas使ってみるとよいかも�
   
 - `どこまで速くできる？ 達人に学ぶPython超高速データ分析～PyData.Tokyo Meetup #4イベントレポート <http://codezine.jp/article/detail/8687>`_
 
+.. figure:: /_static/event3/discuss.jpg
+   :alt: 参加者との質疑応答の様子
+   :width: 600
+
+   参加者との質疑応答の様子
+
 4-3 はじめてのIPython Notebook
 ------------------------------
 IPython NotebookはWebブラウザから対話的にPythonプログラミングなどを行う環境です。
-IPython の最新バージョンは 3.2.1 となっています。書籍で紹介していたバージョン 2.4 と大きく変わったところは、ロゴと名前が `Jupyter <https://jupyter.org/>`_ になったことです。
-IPythonは今後はJupyterとして、PythonだけでなくJulia、R言語などさまざまな言語に対応したNotebook機能を提供していきます。
+IPython の最新バージョンは 3.2.1 となっています。書籍で紹介していたバージョン 2.4 と大きく変わったところは、IPython Notebookの名前が `Jupyter <https://jupyter.org/>`_ になったことです。
+IPython Notebookは今後はJupyterとして、PythonだけでなくJulia、R言語などさまざまな言語に対応したNotebook機能を提供していきます。
 
 最近ではIPython Notebookを使用してプレゼンを行う人もおり、この日も追加資料として以下の Notebook を利用して解説が行われました。
-なお、下記のリンクをクリックすると IPython Notebook の中身が表示されますが、これは GitHub が Notebook ファイルの表示に対応するようになったためです(`GitHub + Jupyter Notebooks = <3 <https://github.com/blog/1995-github-jupyter-notebooks-3>`_)。
+下記のリンクをクリックすると IPython Notebook の中身が表示されますが、これは GitHub が Notebook ファイルの表示に対応するようになったためです(`GitHub + Jupyter Notebooks = <3 <https://github.com/blog/1995-github-jupyter-notebooks-3>`_)。
 
 - `pymook_reading_20150723.ipynb <https://github.com/iktakahiro/ipython-notebook-sample/blob/master/pymook/pymook_reading_20150723.ipynb>`_
-
 
 上記のNotebookを使用して、2つのデータを結合する例を解説しました。
 for文をまわしてif文で分岐なども可能ですが、Pandasを利用すると ``merge()`` メソッドでSQLのような感じで2つのデータを結合できます。
@@ -253,15 +258,27 @@ IPython Notebookを使用するには普通に ``pip install ipython[notebook]``
 余談ですが、ALBERTのページに「統計学とデータ分析」について書いているので、これから勉強しようとする人は読むとよいという紹介がありました。
 
 - `統計学とは <http://www.albert2005.co.jp/technology/data/statistics.html>`_
-    
+
 ビアバッシュ(懇親会)
 ====================
 読書会の終了後は毎回恒例の懇親会(ビアバッシュ)です。
 ビールとピザを片手に会話を楽しみ、その後ライトニングトークを行いました。
 
+.. figure:: /_static/event3/beer-bash.jpg
+   :alt: ビアバッシュの様子
+   :width: 600
+
+   ビアバッシュの様子
+
 一つ目は前回に続いて阿久津(`@akucchan_world <https://twitter.com/akucchan_world>`_)さんから
 `業務のためのPython勉強会#3 - connpass <http://startpython.connpass.com/event/17073/>`_ の紹介がありました。
 次回は8月10日(月)に開催予定とのことです。
+
+.. figure:: /_static/event3/akucchan.jpg
+   :alt: 阿久津(@akucchan_world)さんの発表
+   :width: 600
+
+   阿久津(@akucchan_world)さんの発表
 
 著者の一人である嶋田 健志(`@TakesxiSximada <https://twitter.com/TakesxiSximada>`_)さんからは自身が出した PyCon JP 2015 の Proposal について紹介がありました。
 Twitter/Facebook 等でシェアをよろしくお願いしますとのことです。
@@ -270,7 +287,21 @@ Twitter/Facebook 等でシェアをよろしくお願いしますとのことで
 - `【初心者向けPythonチュートリアル】Webスクレイピングに挑戦してみよう <https://pycon.jp/2015/ja/proposals/vote/59/>`_
 - `Python × Bluemix でやったHack-a-thonでの超短期間認識系アプリ開発事例 <https://pycon.jp/2015/ja/proposals/vote/118/>`_
 
+.. figure:: /_static/event3/sximada.jpg
+   :alt: 嶋田 健志(@TakesxiSximada)さんの発表
+   :width: 600
+
+   嶋田 健志(@TakesxiSximada)さんの発表
+
 同じく著者の一人の関根 裕紀(`@checkpoint <https://twitter.com/checkpoint>`_)さんからは2015年10月に開催される `PyCon JP 2015 <https://pycon.jp/2015/>`_ のお知らせや、現在 `トーク一覧 <https://pycon.jp/2015/ja/proposals/vote_list/>`_ が参照できるので、ぜひTwitter/Facebookで拡散してほしいという話がありました。
+
+ちなみに関根さんが担当した章は、次回読書会でやる「入門Webアプリケーション開発」です。
+
+.. figure:: /_static/event3/checkpoint.jpg
+   :alt: 関根 裕紀(@checkpoint)さんの発表
+   :width: 600
+
+   関根 裕紀(@checkpoint)さんの発表
 
 最後に私からも宣伝LTとしてPyCon JPのプロポーザルとPython入門について話すイベントについて告知させてもらいました。
 
@@ -281,9 +312,9 @@ Twitter/Facebook 等でシェアをよろしくお願いしますとのことで
 ======
 3回目の読書会もビアバッシュでのゆるめのライトニングトークが盛り上がったのでよかったです。ぜひ他の参加者のみなさんも発表の練習だと思ってなにかしゃべってもらえればと思います。
 
-次回読書会は8月XX日(XX)に開催します。内容は「第5章 入門Webアプリケーション開発」です。
+次回読書会は8月26日(木)に開催します。内容は「第5章 入門Webアプリケーション開発」です。
 本を読んで試して疑問がある方、もっとここが知りたい!!という所がある方など、ぜひ参加してください。参加申し込みは下記のURLからできます。
 
-- (ここにURL入れる)
+- `「Pythonエンジニア養成読本」読書会 04 <http://pymook.connpass.com/event/18062/>`_
 
 では、次回もよろしくお願いします。
