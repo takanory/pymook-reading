@@ -272,10 +272,32 @@ Bottleではこのように、いろんな道具を組み合わせて使える�
 
 ビアバッシュ(懇親会)
 ====================
+ライトニングトークのトップバッターは
+`‏@shigeshibu44 <https://twitter.com/shigeshibu44>`_ による「WebエンジニアとWebディレクターを兼任してわかった3つのこと」です。
 
+.. raw:: html
+
+   <iframe src="//www.slideshare.net/slideshow/embed_code/key/iRwP3GoLlC9Uu3" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/satoshimoriya5249/webweb3-51451643" title="WebエンジニアとWebディレクターを兼任してわかった3つのこと" target="_blank">WebエンジニアとWebディレクターを兼任してわかった3つのこと</a> </strong> from <strong><a href="//www.slideshare.net/satoshimoriya5249" target="_blank">Satoshi Moriya</a></strong> </div>
+
+.. warning::
+
+   感想を書く
+
+ライトニングトーク3つ目は `@TakesxiSximada <https://twitter.com/TakesxiSximada>`_ による告知です。
+一つはこの記事公開時にはすでに終了していますが、 `SoftLayer Bluemix Summit 2015 <http://softlayer.connpass.com/event/17037/>`_ です。このイベント「NASAをHack!Bluemix+Pythonを駆使した宇宙人探し奮闘記」というタイトルで発表を行ったようです。
+
+もう一つは
+`PyCon JP 2015のチュートリアル <https://pycon.jp/2015/ja/schedule/tutorials/list/>`_
+で「 `【初心者向けPythonチュートリアル】Webスクレイピングに挑戦してみよう <https://pycon.jp/2015/ja/schedule/presentation/37/>`_ 」という講座を行うことが紹介されました。このチュートリアルは前半はPythonエンジニア養成読本の内容をベースに進めて、後半はWebスクレイピング(Webサイトの内容を解析してデータを抽出する)という実用的なものです。
+
+チュートリアルは現在チケット発売中です(別途PyCon JPの参加チケットも必要です)。
+下記のURLからチケット購入可能ですので、興味のある方はぜひ参加ください。
+
+- `PyCon JP 2015 チュートリアル <http://pyconjp.connpass.com/event/18811/>`_
+ 
 まとめ
 ======
-4回目の読書会も質疑応答も活発であり、ビアバッシュでも面白いライトニングトークがあり楽しい時間でした。
+4回目の読書会も質疑応答も活発で、ビアバッシュでも面白いライトニングトークがあり楽しい時間でした。
 
 最終回となる次回読書会は9月17日(木)に開催します。内容は「第6章 環境構築の自動化」で `Ansible <http://www.ansible.com/>`_ について取り上げます。
 本を読んで試して疑問がある方、もっとここが知りたい!!という所がある方など、ぜひ参加してください。参加申し込みは下記のURLからできます。
