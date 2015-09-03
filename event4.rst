@@ -194,9 +194,7 @@ SQLAlchemyはWebアプリケーションだけじゃなく単独でも使用で�
 この節ではここまで説明したBottle(Webフレームワーク)とSQLAlchemy(O/Rマッパー)を組み合わせて、簡単なWebアプリケーションを作成しています。
 サンプルのWebアプリケーションでは書籍の登録、編集、削除と一覧表示ができるというCRUD(Create/Read/Update/Delete)ができる一般的なものです。
 
-.. warning:: 行数
-             
-コードは全体でXXXX行程度でクラスは2つと非常にシンプルな作りです。
+Pythonコードは160行程度でクラスは2つと非常にシンプルな作りです。テンプレートを含めても400行程度しかありません。
 コード全体はgithubの下記のURLで公開しているので、必要な人はダウンロードして試すことが可能です。
 
 - https://github.com/checkpoint/pymook_web_application
@@ -265,24 +263,34 @@ Bottleではこのように、いろんな道具を組み合わせて使える�
      :caption: コンソールから起動するスクリプト
 
      if __name__ == `__main__:
-         # ここに動作を書く
+         # ここに動作を書きます
          
 - Q: プロトタイプ作成時は ``app.py`` などから実行でよいが、実環境ではどのように実行するのか。
 - A: Bottleをプロダクションで使ったことがない。おそらく gunicorn などのWebアプリケーションサーバーを使用する。
 
 ビアバッシュ(懇親会)
 ====================
-ライトニングトークのトップバッターは
+読書会の終了後はビールとピザによるビアバッシュ(懇親会)です。
+Pythonに関連したりしなかったりといった会話のあとに、ライトニングトーク大会を行いました。
+
+トップバッターは
 `‏@shigeshibu44 <https://twitter.com/shigeshibu44>`_ による「WebエンジニアとWebディレクターを兼任してわかった3つのこと」です。
 
 .. raw:: html
 
-   <iframe src="//www.slideshare.net/slideshow/embed_code/key/iRwP3GoLlC9Uu3" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/satoshimoriya5249/webweb3-51451643" title="WebエンジニアとWebディレクターを兼任してわかった3つのこと" target="_blank">WebエンジニアとWebディレクターを兼任してわかった3つのこと</a> </strong> from <strong><a href="//www.slideshare.net/satoshimoriya5249" target="_blank">Satoshi Moriya</a></strong> </div>
+   <iframe src="//www.slideshare.net/slideshow/embed_code/key/iRwP3GoLlC9Uu3" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/satoshimoriya5249/webweb3-title" 51451643="WebエンジニアとWebディレクターを兼任してわかった3つのこと" target="_blank">WebエンジニアとWebディレクターを兼任してわかった3つのこと</a> </strong> from <strong><a href="//www.slideshare.net/satoshimoriya5249" target="_blank">Satoshi Moriya</a></strong> </div>
 
-.. warning::
+「あるある」的な話で心が多少痛くなる発表でしたが、次回どうなったかの進捗に期待したいと思います。
 
-   感想を書く
+二番目は、加藤 尊さんの「コンピュータ将棋について～機械学習を用いた局面学習への道～」です。
 
+.. raw:: html
+
+   <iframe src="//www.slideshare.net/slideshow/embed_code/key/bN35TrqUaMWVRq" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/TakashiKato2/ss-52335846" title="コンピュータ将棋について～機械学習を用いた局面学習への道～" target="_blank">コンピュータ将棋について～機械学習を用いた局面学習への道～</a> </strong> from <strong><a href="//www.slideshare.net/TakashiKato2" target="_blank">Takashi Kato</a></strong> </div>
+
+この発表を会社(広告代理店)でしたところ「ポカーン」とされたそうです。まぁ、そうですよね。
+内容としてはコンピュータ将棋ってどうやって考えているのかの入り口がわかって非常に興味深かったです。全文検索でよく使われる `n-gram <https://ja.wikipedia.org/wiki/%E5%85%A8%E6%96%87%E6%A4%9C%E7%B4%A2#N-Gram>`_ がここで出てくるのは、面白いアプローチだなと思いました。
+ 
 ライトニングトーク3つ目は `@TakesxiSximada <https://twitter.com/TakesxiSximada>`_ による告知です。
 一つはこの記事公開時にはすでに終了していますが、 `SoftLayer Bluemix Summit 2015 <http://softlayer.connpass.com/event/17037/>`_ です。このイベント「NASAをHack!Bluemix+Pythonを駆使した宇宙人探し奮闘記」というタイトルで発表を行ったようです。
 
