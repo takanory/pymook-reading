@@ -91,92 +91,196 @@
 
 6-2 Ansibleの導入
 -----------------
-Ansibleのインストールはpipでインストールしようって書いているが、Linuxだとパッケージ管理でインストールできる。
-pipでインストールすると依存ライブラリが入らないため、パッケージ管理で入れたほうがいいかも。
+この節では環境構築を自動化するために、Ansibleをインストールして利用を開始するところまでを解説しています。
 
-ColumnでPython3系への対応と書いているが、もうすぐAnsible 2がリリースされるがPython 3対応はしていない。
-準備は進めており、python 3 対応のPRを受け入れている状況。
+書籍の中ではAnsibleのインストールは以下のように **pip** コマンドを使用した手順を紹介しています。
+他にも、各種Linuxのパッケージ管理(apt, yum等)でもAnsibleはインストール可能で、依存ライブラリも合わせてインストールされるため、pipコマンドよりもこちらの方がわかりやすいかもしれないとのことです。
 
-- tasksの中にタスクを入れる
-- YAMLの中にjinja2のテンプレートで変数が入れられる。
-- playbookはtaskを積み重ねて構築する
-- taskには名前を日本語で書けるので、日本語で書くのオススメ
+.. code-block:: sh
+   :caption: pipでのAnsibleインストール
+                
+   # pythonのヘッダが必要なため、python-devをインストール
+   $ sudo apt-get install python-dev
+   # Ansibleをインストール
+   $ sudo pip install ansible
 
-本だと白黒なんだけど実際はCHANGESは黄色でOKは緑になる
+書籍のコラムで『Ansible 2系ではPython 3系にColumnでPython3系への対応予定です。』と書いてあります。ですが、もうすぐリリースされるAnsible 2は残念ながらPython 3対応していないそうです。
+Python 3対応の準備は継続して進められており、Pull Requestを受け入れているそうです。われこそはと思わん方はぜひ協力してみてください。
 
-何回実行しても同じ状態になることを「冪等性」という。これが環境構築だと大事。
+Ansibleで環境構築を行うためには、サーバーへのアクセス情報をまとめた **Inventoryファイル** と環境構築手順をまとめた **Playbookファイル** の2種類のファイルが必要です。
 
-AnsibleだとちょっとずつPlaybookを継ぎ足しながら環境を構築していくので便利。冪等性があるので、同じことを繰り返しても大丈夫。
+Inventoryファイルは以下のようにホスト名が並んでおり ``[web]`` と ``[db]`` という2種類のグループがあるということを表しています。
+このように記述することにより、webグループ全体に同じ手順で環境構築を行うといったことが可能になります。
 
-- Q: Ansible Playbookでハイフンが入っていたり、入ってないのとかがあるが、これはなに?
-- A: これはYAMLのフォーマットのため。ハイフンがリスト、:で区切っているのがdict
-- Q: nameに日本語を書いているが文字コードは?
-- A: utf-8しか使えない。以前は日本語使えなかったが Pull Request を送ってutf-8を通るようにしてもらった。ほとんどの個所では日本語は使えるはず。
-- A: 一箇所だけ、debug printの最中に日本語を入れようとすると、変数を展開するときに日本語が通じないところがある。もしかしたら Ansible 2.0 で解消しているかもしれない
+.. code-block:: ini
+   :caption: Inventoryファイルの例
 
-sudo はいまは become って名前に統一された
+   mail.example.com
 
-- Q: 運用をしている人はどれくらいいます?
-- A: 2人くらい。構築までで運用はしない人もいる。構築は手作業でやっている。台数は一桁。
+   [web]
+   webn01.example.com
+   web02.example.com
+   web03.example.com
 
-こうちく1回だけで一桁なのであれば、手でやってもよいと思うが、長く運用する場合はAnsibleなどのツールがほしくなる。
+   [db]
+   db01.example.com
 
-昔はCluster SSHで複数のホストに同じコマンドを送ったりしていた。
-  
+Playbookファイルには以下のように `YAML <http://ja.wikipedia.org/wiki/YAML>`_ 形式で環境構築手順を記述します。
+このPlaybookの例ではwebグループの全サーバに対して ``appuser`` ユーザの作成、 ``/var/log/app`` ディレクトリの作成とnginx、mysql-clientのインストールを行います。
+
+.. code-block:: yaml
+   :caption: Playbookの例
+                
+   - hosts: web # 対象サーバを指定。今回はwebグループ
+     sudo: yes # sudoを行う
+     vars: # 変数指定
+       logdir: /var/log/app
+     tasks: # 実行するtaskの指定を開始
+       - name: 実行用ユーザの作成 # taskの名前
+         user: name=appuser
+       - name: ログディレクトリの作成
+         file: path="{{ logdir }}" state=directory
+       - name: 依存ライブラリのインストール
+         apt: name="{{ item }}" state=installed
+         with_items:
+           - nginx
+           - mysql-client
+
+Playbookについては以下の様な説明がありました。
+
+- **tasks** の中に環境構築のタスクを入れる
+- YAMLの中にJinja2のテンプレート(``{{ }}`` 形式)で変数が入れられる
+- Playbookは基本的にタスクを積み重ねることによって環境を構築する
+- 各タスクには名前(**name**)を日本語で書けるので、日本語で書くのがおすすめ
+- 余談だが sudo、su タスクは **become** というタスクに統一された
+
+.. figure:: /_static/event5/P9171592.JPG
+   :width: 400px
+   :alt: Playbookについて解説中
+
+   Playbookについて解説中
+
+上記2つのファイルを用意したら ``ansible-playbook`` コマンドで環境構築を行います。
+書籍では実行例が白黒となっていますが、実際には ``changed`` (環境構築が実行されたタスク)の部分は黄色で、 ``ok`` (環境構築がすでの行われているタスク)の部分は緑色で表示されるそうです。
+Ansibleでは同じPlaybookを何度同じサーバーに対して実行しても、環境が同じ状態になります。
+2回ユーザーを作成したりインストールしたりはしません。
+このような特徴を **べき等性** と呼び、環境構築では非常に重要な概念となります。
+
+Ansibleを使用して実際に環境構築を行う場合は、少しずつPlaybookにタスクなどを継ぎ足しながら実行するそうです。
+べき等性があるため、何度繰り返しても一度実行したタスクが無駄に実行されることはありません。
+
+ここでは以下の様な質疑応答がありました。
+
+- Q: Playbookにハイフン(``-``)が入っていたり、入っていない項目があるがこれは何か?
+- A: これはYAMLのフォーマットのため。ハイフンがリスト(list)を表し、コロン(``:``)で区切っているものが辞書(dict)を表している
+- Q: nameに日本語を書いているが文字コードはなにか?
+- A: 文字コードは **utf-8** しか使えない。以前はnameに日本語は使えなかったが Pull Request を送ってutf-8が通るようになった。Ansible はほとんどの個所はutf-8が通るようになっている。ただ、一箇所だけ debug print の最中に日本語を入れようとすると、変数を展開するときに日本語が通じないところがある。Ansible 2.0 では解消しているかもしれない
+
 6-3 少し高度な使い方
 --------------------
-- with_items
-- with_itemsのループだとシンプルなループ処理しかできない
-- 複雑なループを書きたい場合はPythonで書く必要がある。Pluginを書いて組み込む
-- fileモジュールを拡張することとかもできる
+この節ではPlaybookで複雑な動作を記述するための機能について解説しています。
 
-Pluginの書き方は「入門Ansible」に書いてある!!
+with_items
+~~~~~~~~~~
+**with_items** はシンプルなループ処理を行います。
+以下のPlaybookは複数のディレクトリを作成します。
 
-- when
-  
-Ansibleを実行すると、対象のサーバーに入って情報を収集する。ディストリビューションとバージョン、カーネルのバージョン、IPアドレス等々。その情報を利用して条件分岐ができる。「CentOS 6ならこれを実行する」みたいなこともできる。
+.. code-block:: yaml
+   :caption: with_itemsの例
 
-- roles
+   tasks:
+   - name: /opt/foo以下にbin, conf, logディレクトリ作成
+     file: path=/opt/foo/{{ item }} state=directory
+     with_items:
+       - bin
+       - conf
+       - log
+         
+条件分岐などを含んだ複雑なループをPlaybook上で実現したい場合は、PluginをPythonで書く必要があるそうです。
 
-rolesは大事な機能で、これを使いこなせるとAnsibleが上手に使える。しかし紙面ではあんまり触れていない。
+Pluginの書き方は「入門Ansible」に書いてあるよ!!という宣伝がここで入りました。
 
-組み合わせでroleをうまく使おう。
+when
+~~~~
+**when** は条件分岐を行います。
+以下のPlaybookはサーバーの役割によってインストールするアプリケーションを切り替えています。
 
-書籍では ansible-galaxy から role を取得して使っている。
+.. code-block:: yaml
+   :caption: whenの例
 
-実際に運用でもansible-galaxyで探して使っている。対応しているplatformとかで絞られるので、だいたい決まってくる。Linuxのdistributionが違う場合は、githubでforkして自分で修正したりとかもできる。
+   tasks:
+   - name: 役割がwebだったらnginxを入れる
+     apt: name=nginx state=installed
+     when: server == "web"
+   - name: 役割がdbだったらmysql-clientを入れる
+     apt: name=mysql-client state=
+     when: server == "db"
+
+Ansibleを実行すると、対象のサーバーに入ってさまざまな情報を収集します。
+OSのディストリビューションとバージョン、カーネルのバージョン、IPアドレスなど多岐にわたります。
+この情報をそのまま条件分岐に利用できるため、「CentOS 6ならこれを実行する」といった書き方も可能とのことです。
+
+roles
+~~~~~
+**roles** は大事な機能で、うまく使いこなせるとAnsibleが上手に使えるとのことです。しかし書籍ではページの都合もありあまり触れていません。
+書籍では `Ansible Galaxy <https://galaxy.ansible.com/>`_ というroleの共有サービスから取得したroleを使用しています。
+
+以下のコードはroleを使用してサーバーにredisの環境を構築する例です。
+
+.. code-block:: sh
+   :caption: ansible-galaxyでRedisのroleをインストール
+
+   $ mkdir -p roles # rolesというディレクトリを作成する
+   $ ansible-galaxy install DavidWittman.redis -p roles
+
+.. code-block:: yaml
+   :caption: roleの使用例
+
+   - hosts: web
+     sudo: yes
+     vars:
+       - redis_bind: 127.0.0.1
+     roles:
+       - DavidWittman.redis
+
+運用の現場でも Ansible Galaxy で適切な role を探して使用しているそうです。
+対応している platform で絞られるため、だいたい使えるものは決まってくるそうです。
+また、よい role があったが Linux のディストリビューションが異なる場合は、githubでforkして修正して使用したりしているそうです。
+
+.. figure:: /_static/event5/P9171793.JPG
+   :width: 400px
+   :alt: roleについて図を使って解説
+
+   roleについて図を使って解説
+
+ここで書籍に載っていないおすすめモジュールについての紹介がありました。
 
 - register
 
-  モジュールが実行した結果を変数に保存する。
+  **register** は、実行した結果を変数に保存します。実行結果によって次の処理を分岐させたりできます。
 
 - local_action
 
-  Ansibleを実行している管理サーバー側で実行するもの。
-  EC2のインスタンスを立ち上げたりするとかは、Ansibleの管理サーバー側で行うと思うので、そういうときに使う。
+  **local_action** はAnsibleを実行している管理サーバー側でタスクを実行すルキ能です。
+  Amazon EC2のインスタンスを立ち上げたりなど、管理サーバー側で行うべきタスクに使用します。
 
-Ansibleでクラウド操作ができる。
+  Ansibleではさまざまなクラウドの操作ができます。
+  `Cloud Modules <http://docs.ansible.com/ansible/list_of_cloud_modules.html>`_ のページを見ると、Amazon以外にCloudstack、Google、Rackspaceなどのモジュールがあることがわかります。
 
-ec2とかtagつける、snapshotとる、route53にゾーンつける、Azure, Digital Oceanとかも使える。などなど、クラウドサービス対応が沢山ある。
-これらのコマンドは管理サーバー側でやるのが普通かな。
+  AWSの環境構築をChefで行うには `CloudFormation <https://aws.amazon.com/jp/cloudformation/>`_ と `OpsWorks <https://aws.amazon.com/jp/opsworks/>`_ を使用するのがAWS側の提案ですが、同様のことがAnsibleだけで実現できるとのことです。
+  
+ここでは以下の様な質疑応答がありました。
 
-AWSをシェフで構築するツールCloudFormation+OpsWorksを使うっていうのがAWS側が提供している考え方。
-それと同じことはAnsibleだけでできる。
-
-- Q: AWS使う時の管理サーバーはローカルでやるのか、AWS上でやるのか?
-- A: どっちもあり。みんなが入って使えるAnsible実行ホストを用意するという手もある
-
-- Q: rolesの切り方とか変数の置き方に悩まないか
-- A: あまりない。rolesの切り方をミスるとそういうことがおきる。ロールはアプリとかミドルウェアごとに作る。ロールの中だけで完結するようにする。role dependency は使っていない、使わない方がいい。AロールはBロールに依存しているという風に書ける、そのように書くと勝手に実行されて便利だが、なにが実行されているか見えなくなるのであまり好きじゃない。Ansibleは実行順序をかけるので、自分で明示する方がいい。
-
-role dependency は ansible-galaxy のために作られたもの
-
-- Q: 開発環境、ステージング環境ごとに中身が違うみたいなことってどうするの?
-- A: 変数で切り替えるのがよい。条件付き実行を使って、productionならそれ用の変数を読み込むという指定をする。modeでproduction/stagingを切り替えている
-- Q: クラウド用のコマンドを抽象化したようなものとかないかな
-- A: 今のところはない。それぞれのサービスが提供する機能が違うため。共通化すると設定できることが少なくなりそう。
-
-- ディストリビューションのパッケージのインストールはAnsibleはyum, aptと分かれている。packageに統一してという話も出ているが、統一されていない。インストールするパッケージ名がapache2/httpd2のように異なるため分けている。
+- Q: AWS使う時の管理サーバーはローカルでか、それともAWS上か?
+- A: どちらもありえる。関係者がログインできるAnsible実行ホストをAWS上に用意するというパターンもある
+- Q: roleの切り方や変数の置き方に悩まないか?
+- A: あまり悩まない。roleの切り方をミスると悩むと思う。roleはアプリとかミドルウェアごとに作り、roleの中だけで完結するようにする。role dependency(依存関係)は使っておらず、使わない方がよい。
+  AロールはBロールに依存しているという風に書け、勝手に実行されるのは便利だが、なにが実行されているか見えなくなるのであまりおすすめしない。Ansibleはタスクの実行順序を指定できる(上から順番に実行される)ので、自分で明示して実行する方が良い
+- Q: 開発環境、ステージング環境など環境ごとの切り替えはどのようにしているか?
+- A: 変数で切り替えるのがよい。条件付き実行を使用してproductionなら本番環境用の変数を読み込むという指定をする。modeでproduction/stagingを切り替えている
+- Q: クラウド用のコマンドを抽象化したようなものはないか?
+- A: 今のところはない。それぞれのクラウドサービスが提供する機能が違うため。共通化すると設定できることが少なくなりそう。
+  余談だが、Ansibleではインストールはyum, aptとディストリビューションごとに分かれている。 **package** に統一してはどうか?という話も出ているが、現状は統一されていない。インストールするパッケージ名もapache2, httpd2のように異なるため分かれている方が無難だと考えている。
 
 6-4 よく使うモジュール
 ----------------------
