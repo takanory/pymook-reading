@@ -34,12 +34,24 @@
 ======================
 一通り自己紹介を終えると、6章の著者の若山 史郎(`@r_rudi <https://twitter.com/r_rudi>`)から自己紹介がありました。
 
+.. figure:: /_static/event5/P9171508.JPG
+   :width: 400px
+   :alt: 若山 史郎氏
+
+   若山 史郎氏
+
 6章のAnsibleでの環境構築の章の執筆担当で、普段は業務ではGoでプログラミングをしていてPythonは書いていないそうです。以前は仕事でもPython書いていたとのこと。
 会社ではWebアプリの開発から運用までをカバーしているため、Ansibleも義有無で使用しているとのこと。
 
 この書籍の執筆では、入門Ansibleという書籍を出しており、それで声がかかったそうです(まぁ、私が声をかけたようなものですが)。
 
 - `入門Ansible <http://www.amazon.co.jp/dp/B00MALTGDY/>`_
+
+.. figure:: /_static/event5/P9171352.JPG
+   :width: 400px
+   :alt: 自己紹介の様子
+
+   自己紹介の様子
 
 この章で使用する `Ansible <http://www.ansible.com/>`_ はPythonで書かれていますが、普通に使用する分にはPythonでのプログラミングは行いません。
 とはいえ、拡張を作成するときにはPythonが必要となります。
