@@ -284,17 +284,47 @@ roles
 
 6-4 よく使うモジュール
 ----------------------
-一番知ってほしいのはscriptモジュール。
-scriptモジュールがあれば今あるscriptを使える。
-script実行時にcreates引数をつけることによって、一回だけ実行されるスクリプトになる。これで簡易的にべき等性があるといえることになる。
+この節では200以上もあるAnsibleのモジュールのうち、よく使われるものを紹介しています。書籍では以下のモジュールを紹介しています。
 
-shellモジュールは普通にshellとしてコマンドが実行できる。
+- script: スクリプトを実行する
+- shell: 任意のコマンドを実行する
+- file: ファイルの作成、所有者の変更などのファイル操作を行う
+- template: `Jinja2 <http://jinja.pocoo.org/>`_ テンプレートを使用して変数を埋め込んだファイルを生成する
+- unarchive: 圧縮ファイルを展開する
+- apt: aptコマンドを使用する
+- user: ユーザを追加、削除する
 
-ver 1.9で260、ver 2.0で400くらいのモジュールがある。
-何かしたいなーと思ったら、docs.ansible.comを検索してモジュールを探す。
+この中で一番知ってほしいのは **script** モジュールで、scriptモジュールがあれば今使っているスクリプトをそのままAnsibleで使えるようになります。
+**creates** 引数を指定すると、一度だけ実行されるスクリプトになります。
+こうすることにより、簡易的にべき等性のあるスクリプトとなります。
 
-Ansibleはbetter shell scriptだと思っている。
-分散して、書き方が統一できて、複数サーバー実行して、べき等性もあるというイメージ。
+.. code-block:: yaml
+   :caption: scriptモジュール
+                
+   tasks:
+     - name: command.shを実行する
+       script: command.sh
+     - name: files/other.shを実行する。/tmp/done.txtがあれば実行しない
+       script: files/other.sh creates=/tmp/done.txt
+
+Ansible 1.9では260、Ansible 2.0では400くらいのモジュールがあるそうです。
+何か実行したい内容があれば `docs.ansible.com <http://docs.ansible.com/>`_ を検索してモジュールを探してみてください。
+
+
+通常の shell script と比べて以下の様ないポイントがあるため、Ansibleは **better shell script** だと考えているとのことです。
+
+- 分散して実行できる
+- 書き方が統一できる
+- 複数サーバー実行できる
+- べき等性がある
+
+.. figure:: /_static/event5/P9171916.JPG
+   :width: 400px
+   :alt: 質疑応答の様子
+
+   質疑応答の様子
+
+この節と全体を通して、以下の様な質疑応答がありました。
 
 - Q: すべての構成をAnsibleでやるとかいう考えは?
 - A: とくにない。
