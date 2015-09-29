@@ -310,7 +310,6 @@ roles
 Ansible 1.9では260、Ansible 2.0では400くらいのモジュールがあるそうです。
 何か実行したい内容があれば `docs.ansible.com <http://docs.ansible.com/>`_ を検索してモジュールを探してみてください。
 
-
 通常の shell script と比べて以下の様ないポイントがあるため、Ansibleは **better shell script** だと考えているとのことです。
 
 - 分散して実行できる
@@ -326,29 +325,53 @@ Ansible 1.9では260、Ansible 2.0では400くらいのモジュールがある�
 
 この節と全体を通して、以下の様な質疑応答がありました。
 
-- Q: すべての構成をAnsibleでやるとかいう考えは?
-- A: とくにない。
+- Q: すべての構成をAnsibleでやるとかいう考えはあるか?
+- A: とくにはない。
+- Q: `Docker <https://www.docker.com/>`_ と `Kubernetes <http://kubernetes.io/>`_ などのコンテナ技術と、Ansibleのような環境構築の自動化はそのように使い分けたらよいのか?
+  `Capistrano <http://capistranorb.com/>`_ とかともまた違うのか?Ansibleの使いどころを知りたい。
+- A: 自動化ツールとして以下の2系統があり、Ansibleは両方できることが売りになっている。 **SIMPLE. AGENTLESS. POWERFUL.** がAnsibleの特徴。
 
-Ansible使ってshellモジュールで実行したりとかもやる。
+  - Configration Management Tool(構成管理ツール): Chef, Puppetなど
+  - Orchestration Tool(リモート実行ツール): Capistrano, Fabricなど
 
-- Q: Dockerとk8sっていうのとAnsibleとかを使い分けたらいいの?Capistranoとかともまた違うの?Ansibleの使いドコロってどこなんだろう?
-- A: 自動化ツールとして2系統がある。configration management tool(構成管理ツール)chef, puppet等、orchestration tool(リモート実行ツール)Capistrano, fabricとか。Ansibleは両方できるのが売りになっている。
-  Simple, Agentless, Powerful
-
-- Q: Ansible.comってどうやって食べてるの?
-- A: Ansible社の人がメインで公開で開発している。Ansible社はAnsible Towerというものを売っている。Web画面から実行したり、Webhookで実行するとかのいろんな機能が付いている。他はトレーニングとかコンサルティングとかをやっている。使ったことはない。
-  Ansible Tower
-- Q: オーケストレーションができるとあったが、複数サーバー間の連携とかできるのか?
-- A: シリアル実行でやればいいかな
-- Q: Playbookのファイルをリポジトリで管理するのが望ましい。リポジトリはどこがいい?
-- A: Gitとかで github でもいいし社内のgitサーバーでもいいと思っている
-- Q: sshの秘密鍵の管理とかどうしてる?
-- A: ファイルについては分けておいたほうがよい。パスワード、Tokenとかの情報をPlaybookに書きたい場合がある。Ansible vaultという機能がある。暗号化してPlaybookに書き込み、実行時にパスワードを入力すると復号化して実行するみたいなこともできる
-- A: HashiCorpのVaultってやつも秘密情報持てるので、それと連携するのはよいかも
+- Q: Ansible.com はどうやって稼いでいるのか?
+- A: Ansible.com 社の人がメインで Ansible を開発をして公開している。
+  Ansible社は `Ansible Tower <http://www.ansible.com/tower>`_ というツールを販売している。
+  Ansilbe Tower はWeb画面からAnsibleを実行したり、Webhookで実行したりといった様々な機能を提供している。
+  他にはAnsibleのトレーニングやコンサルティングを実施している。
+  しかし、Ansible Towerを使ったことはない。
+- Q: 「Orchestration Tool(リモート実行ツール)としても使える」とあったが、複数サーバー間で連携して動作させることは可能か?AサーバーのDBがインストールされたら、BサーバーのXXXをインストールするといったようなことを想定している。
+- A: 分散実行ではなく、シリアルで順番に実行すればよいと思う。
+- Q: Playbookのファイルをリポジトリで管理するのが望ましいとあったが、リポジトリはどこに置くべきか?
+- A: Git を使うのであれば github でもよいし、社内のgitサーバーでもよい。
+- Q: sshの秘密鍵の管理はどうすれば安全になるか?秘密鍵そのものをリポジトリにコミットしたくない。
+- A: ファイルについては分けておいたほうがよい。
+  パスワード、Tokenとかの秘密情報をPlaybookに書きたい場合がある。
+  その場合は `Ansible Vault <http://docs.ansible.com/ansible/playbooks_vault.html>`_ という機能で暗号化した情報をPlaybookに書き込み、実行時に Vault 用のパスワードを入力して復号化して実行ということができる。
+- A: HashiCorpの `Vault <https://vaultproject.io/>`_ も秘密情報を持てるので、Ansibleと連携するとよいかも知れない。
 
 Appendix2 ますます活躍の場が広がるPython
 ========================================
-ここはざっと説明して終了
+少し時間が余ったので、最後のAppendix2の紹介をこの節の著者でもある筆者(鈴木 たかのり)から行いました。
+
+.. figure:: /_static/event5/P9172027.JPG
+   :width: 400px
+   :alt: Appendix2 について紹介
+
+   Appendix2 について紹介
+
+このAppendix2では半分ネタとして、ちょっと変わった環境でもPythonが動作しているということを紹介しています。
+書籍では主に以下のような少し変わった環境で動作するPythonについて紹介しました。
+
+- `Pepper <http://www.softbank.jp/robot/special/pepper/>`_: ロボットの動作をPythonでプログラミングできる
+- `Micro Python <https://micropython.org/>`_: マイコン上で直接Pythonが実行できる
+- CG: `Blender <http://blender.jp>`_ 等のCGツールのスクリプトとして利用できる
+
+Pythonは設計思想として「シンプルで読みやすいコードを書けること」があります。この思想により、さまざまなツールのスクリプト言語として採用されているのではないかと考えられます。
+
+余談ですが、書籍にはPepper、Micro Pythonの写真やBlenderの画面が掲載されています。
+これらの画像を自分で用意するのは大変ですが、これらを使用している知り合いにお願いして画像を提供してもらい非常に助かりました。
+その節は、ありがとうございました。
 
 ビアバッシュ(懇親会)
 ====================
