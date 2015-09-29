@@ -57,7 +57,7 @@
 とはいえ、拡張を作成するときにはPythonが必要となります。
 
 と、ここで読書会の本題に入ろうとしたのですが、若山さんは書籍のPDFを用意しておらず、本を読みながら進めようと思っていたとのこと。
-それだとみんなでどこの話ししているかわかりにくいので、急遽書籍のPDFを受け渡したりするというグダグダな感じでスタートしました。
+それでは参加者がどこを話しているかわかりにくいので、急遽書籍のPDFデータを著者間で受け渡し、それを画面に表示するというグダグダな感じでスタートしました。
 
 6-1 環境構築をなぜ自動化すべきか
 --------------------------------
@@ -68,7 +68,7 @@
 `Chef <https://www.chef.io/chef/>`_ や
 `Puppet <https://puppetlabs.com/>`_ でも問題ありません。
 
-次の書籍にも載っている図はAnsibleを想定しています。Ansibelは対象サーバー(環境を構築する対象となるサーバー)にsshで接続して環境構築を行います。これは、対象サーバーにエージェントと呼ばれるプログラムをインストールする必要があるChefとは異なります。
+次の書籍にも載っている図はAnsibleを想定しています。Ansibleは対象サーバー(環境を構築する対象となるサーバー)にsshで接続して環境構築を行います。これは、対象サーバーにエージェントと呼ばれるプログラムをインストールする必要があるChefとは異なります。
 
 .. figure:: /_static/event5/automation.png
    :width: 400
@@ -301,8 +301,8 @@ Ansibleはbetter shell scriptだと思っている。
 
 Ansible使ってshellモジュールで実行したりとかもやる。
 
-- Q: Dockerとk8sっていうのとAnsibleとかを使い分けたらいいの?Capstranoとかともまた違うの?Ansibleの使いドコロってどこなんだろう?
-- A: 自動化ツールとして2系統がある。configration management tool(構成管理ツール)chef, puppet等、orchestration tool(リモート実行ツール)capistrano, fabricとか。Ansibleは両方できるのが売りになっている。
+- Q: Dockerとk8sっていうのとAnsibleとかを使い分けたらいいの?Capistranoとかともまた違うの?Ansibleの使いドコロってどこなんだろう?
+- A: 自動化ツールとして2系統がある。configration management tool(構成管理ツール)chef, puppet等、orchestration tool(リモート実行ツール)Capistrano, fabricとか。Ansibleは両方できるのが売りになっている。
   Simple, Agentless, Powerful
 
 - Q: Ansible.comってどうやって食べてるの?
