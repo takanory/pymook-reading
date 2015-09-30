@@ -375,8 +375,122 @@ Pythonは設計思想として「シンプルで読みやすいコードを書�
 
 ビアバッシュ(懇親会)
 ====================
-- ansible の cow say
-- コードゴルフ→
+読書会の後は毎回恒例のビールとピザによるビアバッシュ(懇親会)です。
+最終回なのでビールの単価を少し上げてみました。
 
-まとめ
-======
+.. figure:: /_static/event5/P9172087.JPG
+   :width: 400px
+   :alt: ビアバッシュ
+
+   ビアバッシュ
+
+いつものように会話を楽しんだ後にライトニングトーク(LT)大会を行いました。
+
+LT1 - cowsay
+------------
+1番目は今日のメインスピーカーでもある若山 史郎(`@r_rudi <https://twitter.com/r_rudi>`_)さんによる **cowsay** の話です。
+
+Linuxなどにはメッセージを牛にしゃべらせる `cowsay <https://ja.wikipedia.org/wiki/Cowsay>`_ というジョークプログラムがあります。
+
+.. code-block:: sh
+   :caption: cowsayの実行例
+
+   $ cowsay Python engineer training book
+    _______________________________ 
+   < Python engineer training book >
+    ------------------------------- 
+           \   ^__^
+            \  (oo)\_______
+               (__)\       )\/\
+                   ||----w |
+                   ||     ||
+
+Ansibleはこのcowsayが大好きで、cowsayがインストールされているとデフォルトでAnsible実行時のメッセージをcowsayを使って出力します。
+ウザいことこの上ありません。
+
+この表示をオフにするためには環境変数で ``ANSIBLE_NOCOWS=1`` と設定するとよいそうです。
+AnsibleのFAQにも `How do I disable cowsay? <http://docs.ansible.com/ansible/faq.html#how-do-i-disable-cowsay>`_ と書いてありました。
+
+.. figure:: /_static/event5/P9172113.JPG
+   :width: 400px
+   :alt: Ansibleの実行結果がcowsayで表示されている様子
+
+   Ansibleの実行結果がcowsayで表示されている様子
+
+LT2 - ゴルフ
+------------
+2番目のLTは第2章の執筆を担当した嶋田 健志(`@TakesxiSximada <https://twitter.com/TakesxiSximada>`_)さんによる「ゴルフ」です。
+
+.. figure:: /_static/event5/P9172149.JPG
+   :width: 400px
+   :alt: 嶋田さんによるLT
+
+   嶋田さんによるLT
+
+が、プレゼンテーションの前半でPCがフリーズしてしまい発表が聞けませんでした。
+以下に資料へのリンクを貼っておきますが、Pythonでの `コードゴルフ <https://ja.wikipedia.org/wiki/%E3%82%B3%E3%83%BC%E3%83%89%E3%82%B4%E3%83%AB%E3%83%95>`_ (できるだけ短いコードでお題を解くコンテスト)の話です。
+
+.. raw:: html
+
+   <iframe src="//www.slideshare.net/slideshow/embed_code/key/amU5VhkcFeb48H" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/TakesxiSximada/ss-52895911" title="ゴルフ" target="_blank">ゴルフ</a> </strong> from <strong><a href="//www.slideshare.net/TakesxiSximada" target="_blank">Takesxi Sximada</a></strong> </div>
+
+LT3 - 業務のためのPython勉強会
+------------------------------
+LTラストは阿久津(`@akucchan_world <https://twitter.com/akucchan_world>`_)さんによる勉強会の紹介です。
+阿久津さんは今回は参加できないと思っていたそうですが、なんとか時間ができたそうで最後の方に駆けつけてきてくれました。第1回から全てに参加してくれて、非常にありがたいです。
+
+発表の内容は阿久津さんが主催している
+`業務のためのPython勉強会#5 <http://startpython.connpass.com/event/20092/>`_
+の紹介でした。次回は10月14日(水)に開催予定だそうです。
+
+.. figure:: /_static/event5/P9172164.JPG
+   :width: 400px
+   :alt: 阿久津さんによるLT
+
+   阿久津さんによるLT
+
+筆者もこの勉強会に参加したいと思っていたのですが、読書会やPyCon JPの準備などいろいろ忙しくて参加できていませんでした。次回は参加しようかなと考えています。
+
+おわりに
+========
+今回で「Pytonnエンジニア養成読本」の読書会と読書会レポートは終了です。
+5月からはじめて全5回に渡った読書会を、なんとか完走することができました。
+
+この日は、執筆者も全員揃うことができたので、記念撮影をしました。
+左から担当した章の順番に並んでいます。
+
+- 鈴木 たかのり: 第1章 よくわかるPythonの世界(`第1回読書会 <http://gihyo.jp/news/report/01/python-training-book-reading-club/0001>`_)
+- 清原 弘貴: 第2章 これだけは知っておきたいPython言語はじめの一歩(`第1回読書会 <http://gihyo.jp/news/report/01/python-training-book-reading-club/0001>`_)
+- 嶋田 健志: 第3章 開発環境とチーム開発(`第2回読書会 <http://gihyo.jp/news/report/01/python-training-book-reading-club/0002>`_)
+- 池内 孝啓: 第4章 PyData入門(`第3回読書会 <http://gihyo.jp/news/report/01/python-training-book-reading-club/0003>`_)
+- 関根 裕紀: 第5章 入門Webアプリケーション開発(`第4回読書会 <http://gihyo.jp/news/report/01/python-training-book-reading-club/0004>`_)
+- 若山 史郎: 第6章 環境構築の自動化(第5回読書会)
+
+「Pythonエンジニア養成読本」が出版できて、読書会を開催できたのはみんなのおかげです。
+私の思いつきではじめた読書会に快く協力してくれて、本当にありがとうございました。
+それぞれのスタンスで面白い解説や追加情報が聞けて、有意義な読書会になったと思います。
+
+.. figure:: /_static/event5/P9172204.JPG
+   :width: 400px
+   :alt: 執筆者が勢揃い
+
+   執筆者が勢揃い
+
+そして、この `読書会をはじめるとき <http://gihyo.jp/news/report/01/python-training-book-reading-club/0001>`_ に動機として『単純にこの本を読んだ人はどんな人たちで、どんな感想を持っているのか知りたい』ということを書きました。
+全5回を終えてみて当初の目標は想定以上に達成できて、今までのコミュニティ活動ではあまり会ったことがない人たちにたくさん出会うことができました。
+
+複数回参加してくれる方もたくさんいて、この読書会に参加してなにか楽しいことや得るものがあったのかなと思い、非常にうれしく思います。
+また、自己紹介でなんらかの進捗(「XXXを試してみた」など)を聞いたりすることも非常にうれしかったです。
+
+今回でこの読書会は終了しますが、この書籍と読書会をきっかけにPython関連コミュニティに参加、活動してくれると非常にうれしいです。
+コミュニティに関わっていれば、PyCon JPなどどこかのイベントで会うこともあると思います。
+その時は、同じ仲間として声をかけあえるといいかなと思います。
+
+.. figure:: /_static/event5/P9172207.JPG
+   :width: 400px
+   :alt: 第5回読書会参加者の集合写真
+
+   第5回読書会参加者の集合写真
+
+それでは、またどこかでお会いしましょう!!
+See you in Python related community everywhere!!
