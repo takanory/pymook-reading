@@ -310,11 +310,10 @@ roles
 Ansible 1.9では260、Ansible 2.0では400くらいのモジュールがあるそうです。
 何か実行したい内容があれば `docs.ansible.com <http://docs.ansible.com/>`_ を検索してモジュールを探してみてください。
 
-通常の shell script と比べて以下の様ないポイントがあるため、Ansibleは **better shell script** だと考えているとのことです。
+通常の shell script と比べて以下の様な利点があるため、Ansibleは **better shell script** だと考えているとのことです。
 
-- 分散して実行できる
+- 複数サーバーに並列して実行できる
 - 書き方が統一できる
-- 複数サーバー実行できる
 - べき等性がある
 
 .. figure:: /_static/event5/P9171916.JPG
@@ -326,7 +325,7 @@ Ansible 1.9では260、Ansible 2.0では400くらいのモジュールがある�
 この節と全体を通して、以下の様な質疑応答がありました。
 
 - Q: すべての構成をAnsibleでやるとかいう考えはあるか?
-- A: とくにはない。
+- A: とくにはない。目的に合致するもっといい方法があればそちらを使うべき。
 - Q: `Docker <https://www.docker.com/>`_ と `Kubernetes <http://kubernetes.io/>`_ などのコンテナ技術と、Ansibleのような環境構築の自動化はそのように使い分けたらよいのか?
   `Capistrano <http://capistranorb.com/>`_ とかともまた違うのか?Ansibleの使いどころを知りたい。
 - A: 自動化ツールとして以下の2系統があり、Ansibleは両方できることが売りになっている。 **SIMPLE. AGENTLESS. POWERFUL.** がAnsibleの特徴。
